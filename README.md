@@ -100,10 +100,18 @@ $ yarn run test
 
 * If you want to customize the selenium acution,
 
-  you open the following file.
+  you create the following file.
 
+example: src/selenium/env.ts
 ```sh
-src/selenium/libs/selenium.ts
+export const env_urls = [
+  "URL",
+  "URL",
+  "URL",
+  "URL",
+  "URL",
+  "URL",
+];
 ```
 
 ## Reference sites
