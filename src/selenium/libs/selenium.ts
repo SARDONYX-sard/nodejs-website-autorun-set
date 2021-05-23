@@ -1,9 +1,8 @@
 import { sleep } from "../../libs/sleep";
 import { build, default_urls } from "./index/index";
-import { env_urls } from "../env";
 
 export async function selenium(url_lists?: string[]) {
-  const urls = url_lists ?? env_urls ?? default_urls;
+  const urls = url_lists ?? default_urls;
 
   // Build webdriver
   const driver = await build();

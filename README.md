@@ -102,9 +102,10 @@ $ yarn run test
 
   you create the following file.
 
-example: src/selenium/env.ts
-```sh
-export const env_urls = [
+Example:
+src/selenium/urls.ts
+```javascript
+export const default_urls = [
   "URL",
   "URL",
   "URL",
