@@ -42,7 +42,7 @@ The Selenium program allows you to open pre-specified URLs in sequence.
 1. Clone this repository.
 
 ```sh
-$ git clone
+$ git clone https://github.com/SARDONYX-sard/nodejs-website-autorun-set.git
 ```
 
 2. Run command the following command.
