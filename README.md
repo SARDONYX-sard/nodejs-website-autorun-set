@@ -9,6 +9,7 @@
 <!-- TOC depthFrom:2 -->
 
 - [Table of Contents](#table-of-contents)
+- [What is that ?](#what-is-that-)
 - [Quick Start](#quick-start)
   - [Requirements](#requirements)
 - [Installation](#installation)
@@ -21,6 +22,12 @@
 - [License](#license)
 
 <!-- /TOC -->
+
+
+## What is that ?
+
+This is the Program of Puppeteer & selenium running on Node.js.
+The Selenium program allows you to open pre-specified URLs in sequence.
 
 ## Quick Start
 
@@ -49,6 +56,23 @@ If you are using Yarn, use the following command.
 ```sh
 $ yarn install
 ```
+
+3. Please create a file named `urls.ts` in `src/selenium/libs/`
+   and write
+
+- example
+src/selenium/libs/urls.ts
+```javascript
+export const default_urls = [
+  "https://www.google.com/",
+  "https://www.google.com/",
+  "https://www.google.com/",
+  "https://www.google.com/",
+  "https://www.google.com/",
+  "https://www.google.com/"
+];
+```
+
 
 ## Usage
 
@@ -103,7 +127,7 @@ $ yarn run test
   you create the following file.
 
 Example:
-src/selenium/urls.ts
+src/selenium/libs/urls.ts
 ```javascript
 export const default_urls = [
   "URL",
