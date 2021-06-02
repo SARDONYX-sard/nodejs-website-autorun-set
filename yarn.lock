@@ -631,10 +631,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.3.tgz#ef65165aea2924c9359205bf748865b8881753c0"
   integrity sha512-PijRCG/K3s3w1We6ynUKdxEc5AcuuH3NBmMDP8uvKVp6X43UY7NQlTzczakXP3DJR0F4dfNQIGjU2cUeRYs2AA==
 
-"@types/selenium-webdriver@^4.0.12":
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-4.0.12.tgz#5d5ab3f104be767ddbc84e3b97ba08e31c61d63c"
-  integrity sha512-0fw09Ocwjbrc3xMqwz1dgDGwslaHZ/TqHu9WQTyNLVsK+3jekz46YvYNFZeglNnULMjMNXAhy7w90327Y9fxGQ==
+"@types/selenium-webdriver@4.0.13":
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/@types/selenium-webdriver/-/selenium-webdriver-4.0.13.tgz#293d9543b096ec3523a27704b0f112bdfb38987f"
+  integrity sha512-RiQ863Rt8lVX/YveuYX2GSufaH4/1lWRZ6dITlcXtrJGYZmaNstYahm7qJ8FO+2kyAcrUtQVMxMjGv5FbsQeEQ==
 
 "@types/stack-utils@^2.0.0":
   version "2.0.0"
