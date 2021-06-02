@@ -1,5 +1,6 @@
 # Contributing Guidelines
 
+> This is adapted from [next-typed-routes's contributing guidelines](https://github.com/jagaapple/next-typed-routes/blob/master/.github/CONTRIBUTING.md).
 ## Language
 
 Git branch names and commit messages, and GitHub pull request should be written in English in order to be readable for

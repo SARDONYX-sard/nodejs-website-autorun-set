@@ -6,8 +6,7 @@
   "scripts": {
     "puppeteer": "node src/puppeteer.js",
     "selenium": "npx ts-node src/selenium/main.ts",
-    "tests": "npx ts-node src/selenium/__test__/selenium.spec.ts",
-    "test": "npx jest"
+    "tests": "npx ts-node src/__test__/selenium/selenium.spec.ts"
   },
   "keywords": [],
   "author": "sard",
