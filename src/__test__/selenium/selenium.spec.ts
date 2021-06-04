@@ -12,7 +12,7 @@ describe("seleniumのlibsテスト", () => {
     return driver.quit();
   });
 
-  it("create&switch Tab Test", async () => {
+  it("正常系_遷移_タブ", async () => {
     // Entry point
     await driver.get(default_urls[0]);
 

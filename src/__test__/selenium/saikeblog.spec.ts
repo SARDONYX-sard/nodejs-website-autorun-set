@@ -1,6 +1,6 @@
 import "chromedriver";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
-import moment from "moment";
+import * as moment from "moment";
 
 let driver: ThenableWebDriver;
 
@@ -49,11 +49,15 @@ describe("saikeblogに対するseleniumTest", () => {
     const copyright = await driver.findElement(By.className("source-org")).getText();
 
     // 現在の年を取得する
-    const year = moment(new Date()).format("YYYY");
+    const m = moment();
+    const this_year = m.format("YYYY");
+    const last_year = m.add(-2, "year").format("YYYY");
 
     // 検証
     expect(title).toBe("さいけの技術ブログ");
-    expect(copyright).toBe("Copyright © " + year + " さいけの技術ブログ All Rights Reserved.");
+    expect(copyright).toBe(
+      `Copyright © ${last_year}-${this_year} さいけの技術ブログ All Rights Reserved.`,
+    );
   });
 
   it("正常系_整合_URL", async () => {
@@ -78,8 +82,8 @@ describe("saikeblogに対するseleniumTest", () => {
     const title = await driver.getTitle();
     const currentUrl = await driver.getCurrentUrl();
 
-    expect(title).toBe("技術 – さいけの技術ブログ");
     expect(currentUrl).toBe("https://saikeblog.com/category/%e6%8a%80%e8%a1%93/");
+    expect(title).toBe("技術 – さいけの技術ブログ");
   });
 
   it("正常系_動作_検索", async () => {
