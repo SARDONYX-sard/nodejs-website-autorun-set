@@ -37,7 +37,7 @@ const articleUrlList = [
           }
 
           console.log(index);
-          const fileName = index + ".png";
+          const fileName = "src/puppeteer/img/" + index + ".png";
           await page.screenshot({ path: fileName, fullPage: true });
 
           const result = await page.evaluate(() => {

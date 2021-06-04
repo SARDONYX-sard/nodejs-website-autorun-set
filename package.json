@@ -4,7 +4,7 @@
   "description": "auto-web",
   "main": "src/puppeteer.js",
   "scripts": {
-    "puppeteer": "node src/puppeteer.js",
+    "puppeteer": "node src/puppeteer/main.js",
     "selenium": "npx ts-node src/selenium/main.ts",
     "tests": "npx ts-node src/__test__/selenium/selenium.spec.ts"
   },
