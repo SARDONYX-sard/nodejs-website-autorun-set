@@ -12,7 +12,7 @@
   "author": "sard",
   "license": "MIT",
   "dependencies": {
-    "puppeteer": "^9.0.0",
+    "puppeteer": "^10.0.0",
     "selenium-webdriver": "^4.0.0-beta.3",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^3.9.0",
