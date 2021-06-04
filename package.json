@@ -6,12 +6,15 @@
   "scripts": {
     "puppeteer": "node src/puppeteer/main.js",
     "selenium": "npx ts-node src/selenium/main.ts",
-    "tests": "npx ts-node src/__test__/selenium/selenium.spec.ts"
+    "tests": "npx ts-node src/__test__/selenium/selenium.spec.ts",
+    "test": "npx jest --coverage"
   },
   "keywords": [],
   "author": "sard",
   "license": "MIT",
   "dependencies": {
+    "chromedriver": "^91.0.0",
+    "moment": "^2.29.1",
     "puppeteer": "10.0.0",
     "selenium-webdriver": "^4.0.0-beta.3",
     "ts-node": "10.0.0",
@@ -20,11 +23,13 @@
   },
   "devDependencies": {
     "@types/jest": "26.0.23",
+    "@types/node": "^15.12.1",
     "@types/selenium-webdriver": "4.0.13",
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
     "eslint": "7.27.0",
-    "jest": "27.0.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest": "^27.0.4",
     "ts-jest": "27.0.2"
   }
 }

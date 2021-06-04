@@ -1,10 +1,10 @@
+import "chromedriver";
 import chrome = require("selenium-webdriver/chrome");
 import webdriver = require("selenium-webdriver");
 // const { Builder, By, until } = webdriver;
 
 // Create driver instance
-const path = "C://tool//selenium//chromedriver_win32//chromedriver.exe";
-const service = new chrome.ServiceBuilder(path).build();
+const service = new chrome.ServiceBuilder().build();
 chrome.setDefaultService(service);
 
 // Setting webdriver args
