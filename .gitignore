@@ -1,3 +1,4 @@
 node_modules/
 .env
-url.ts
+custom-urls.ts
+coverage

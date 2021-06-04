@@ -4,7 +4,7 @@ import moment from "moment";
 
 let driver: ThenableWebDriver;
 
-describe("SeleniumChromeTest", () => {
+describe("saikeblogに対するseleniumTest", () => {
   beforeAll(() => {
     driver = new Builder().forBrowser("chrome").build();
   });
