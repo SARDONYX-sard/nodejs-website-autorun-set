@@ -15,7 +15,8 @@
         "patch",
         "pin",
         "digest",
-        "lockFileMaintenance"
+        "lockFileMaintenance",
+        "preserveSemverRanges"
       ],
       "automerge": true
     }
