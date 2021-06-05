@@ -12,6 +12,7 @@
   "author": "sard",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.1",
     "chromedriver": "^91.0.0",
     "moment": "^2.29.1",
     "puppeteer": "10.0.0",
