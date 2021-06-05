@@ -8,7 +8,7 @@ const service = new chrome.ServiceBuilder().build();
 chrome.setDefaultService(service);
 
 /**
- * @param {Object} options
+ * @param options
  * - example:
  *
  *{
@@ -23,23 +23,17 @@ chrome.setDefaultService(service);
  *
  *      `--window-size=1980,1200`,
  *
- *      other chrome options
+ *    ],
  *
- *    ]
+ *    w3c: false
  *
  *}
  */
-export function build(options?: Object) {
-  const custom_options = options || {};
+export function build(options = {}) {
   // Setting webdriver args
   const capabilities = webdriver.Capabilities.chrome();
 
-  capabilities.set(
-    "chromeOptions",
-    Object.assign(custom_options, {
-      args: [],
-    }),
-  );
+  capabilities.set("chromeOptions", options);
 
   return new webdriver.Builder().withCapabilities(capabilities).build();
 }

@@ -1,6 +1,7 @@
 import "chromedriver";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
 import * as moment from "moment";
+import { sleep } from "./../../libs/sleep";
 
 let driver: ThenableWebDriver;
 
@@ -83,6 +84,9 @@ describe("saikeblogに対するseleniumTest", () => {
     const currentUrl = await driver.getCurrentUrl();
 
     expect(currentUrl).toBe("https://saikeblog.com/category/%e6%8a%80%e8%a1%93/");
+
+    await sleep(3000);
+
     expect(title).toBe("技術 – さいけの技術ブログ");
   });
 

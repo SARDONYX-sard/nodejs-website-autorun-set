@@ -58,23 +58,6 @@ If you are using Yarn, use the following command.
 $ yarn install
 ```
 
-3. Please create a file named `urls.ts` in `src/selenium/libs/`
-   and write
-
-- example
-src/selenium/libs/urls.ts
-```javascript
-export const default_urls = [
-  "https://www.google.com/",
-  "https://www.google.com/",
-  "https://www.google.com/",
-  "https://www.google.com/",
-  "https://www.google.com/",
-  "https://www.google.com/"
-];
-```
-
-
 ## Usage
 
 ### Selenium

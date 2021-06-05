@@ -2,17 +2,47 @@ import { WebDriver } from "selenium-webdriver";
 import { sleep } from "../../libs/sleep";
 import { build, default_urls } from "./index";
 
+/**
+ *  Create a new Tab
+ * @param url - URL
+ * @param driver - build Driver
+ */
 export async function createNewTab(url: string, driver: WebDriver) {
-  // Create a new Tab
   await driver.executeScript("window.open(arguments[0], '_blank')", url);
 }
 
+/**
+ * Switch to a new tab
+ * @param count -  want to open tab number
+ * @param driver - build Driver
+ */
 export async function switchNewTab(count: number, driver: WebDriver) {
-  // Switch to a new tab
   const tabs = await driver.getAllWindowHandles();
   await driver.switchTo().window(tabs[count + 1]);
 }
 
+/**
+ * @param {Object} buildOpts
+ * - example:
+ *
+ *{
+ *
+ *    args: [
+ *
+ *      "--headless",
+ *
+ *      "--no-sandbox",
+ *
+ *      "--disable-gpu",
+ *
+ *      `--window-size=1980,1200`,
+ *
+ *    ],
+ *
+ *    w3c: false
+ *
+ *}
+ */
 export async function loopTab(
   url_lists = default_urls,
   waitMs?: number,
@@ -27,13 +57,10 @@ export async function loopTab(
 
     let count = 0;
     for (const url of url_lists) {
-      // Create a new Tab
       await createNewTab(url, driver);
 
-      // Switch to a new tab
       await switchNewTab(count, driver);
 
-      // Wait time
       await sleep(waitMs);
       count++;
     }
