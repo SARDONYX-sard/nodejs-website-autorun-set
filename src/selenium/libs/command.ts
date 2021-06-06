@@ -24,7 +24,7 @@ export function echoError(error: any) {
  * npx ts-node src/selenium/main.ts --pause
  */
 export function execCommand(command: string) {
-  if ((process.argv[2] = command)) {
+  if (process.argv[2] == command) {
     exec(command, (error, stdout, stderr) => {
       if (error) {
         console.error(`[ERROR] ${error}`);
