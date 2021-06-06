@@ -13,13 +13,15 @@ export async function createNewTab(url: string, driver: WebDriver) {
 
 /**
  * Switch to a new tab
- * @param count -  want to open tab number
- * @param driver - build Driver
+ * @param count -  Want to open tab number
+ * @param driver - Build Driver
  */
 export async function switchNewTab(count: number, driver: WebDriver) {
   const tabs = await driver.getAllWindowHandles();
   await driver.switchTo().window(tabs[count + 1]);
 }
+
+// ----------------------------------------------------------------
 
 /**
  * @param {Object} buildOpts
@@ -43,32 +45,33 @@ export async function switchNewTab(count: number, driver: WebDriver) {
  *
  *}
  */
-export async function loopTab(
-  url_lists = default_urls,
-  waitMs?: number,
-  buildOpts?: Object,
-): Promise<void> {
-  try {
-    // Build webdriver
-    const driver = await build(buildOpts);
 
-    // Entry point
-    await driver.get(url_lists[0]);
+export function loopTab(url_lists = default_urls, waitMs?: number, buildOpts?: Object) {
+  let driver: WebDriver;
 
-    let count = 0;
-    for (const url of url_lists) {
-      await createNewTab(url, driver);
+  return async () => {
+    try {
+      // Build webdriver
+      driver = await build(buildOpts);
 
-      await switchNewTab(count, driver);
+      // Entry point
+      await driver.get(url_lists[0]);
 
-      await sleep(waitMs);
-      count++;
+      let count = 0;
+      for (const url of url_lists) {
+        await createNewTab(url, driver);
+
+        await switchNewTab(count, driver);
+
+        await sleep(waitMs);
+        count++;
+      }
+
+      // catch error
+    } catch (error) {
+      throw error;
+    } finally {
+      await driver.quit();
     }
-
-    await driver.quit();
-
-    // catch error
-  } catch (error) {
-    throw error;
-  }
+  };
 }

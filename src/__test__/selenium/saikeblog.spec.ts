@@ -1,5 +1,6 @@
 import "chromedriver";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
+import * as chrome from "selenium-webdriver/chrome";
 import * as moment from "moment";
 import { sleep } from "./../../libs/sleep";
 
@@ -7,7 +8,11 @@ let driver: ThenableWebDriver;
 
 describe("saikeblogに対するseleniumTest", () => {
   beforeAll(() => {
-    driver = new Builder().forBrowser("chrome").build();
+    const options = new chrome.Options().addArguments(
+      ...["--headless", "--disable-gpu", "--window-size=1024,768"],
+    );
+
+    driver = new Builder().setChromeOptions(options).forBrowser("chrome").build();
   });
 
   afterAll(() => {
@@ -84,8 +89,6 @@ describe("saikeblogに対するseleniumTest", () => {
     const currentUrl = await driver.getCurrentUrl();
 
     expect(currentUrl).toBe("https://saikeblog.com/category/%e6%8a%80%e8%a1%93/");
-
-    await sleep(3000);
 
     expect(title).toBe("技術 – さいけの技術ブログ");
   });

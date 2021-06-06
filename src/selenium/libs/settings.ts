@@ -1,7 +1,6 @@
 import "chromedriver";
 import chrome = require("selenium-webdriver/chrome");
 import webdriver = require("selenium-webdriver");
-// const { Builder, By, until } = webdriver;
 
 // Create driver instance
 const service = new chrome.ServiceBuilder().build();

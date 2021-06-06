@@ -1,19 +1,16 @@
 import { Manga } from "./custom/custom-selenium";
+import { echoError } from "./libs";
 // import { loopTab } from "./libs";
 
-// loopTab().catch((error) => {
-//   console.log(error);
-//   process.exit(1);
-// });
+// (async () => {
+//   await loopTab()();
+// })().catch(echoError);
 
 (async () => {
-  const manga = await Manga.init({
+  const options = {
     args: ["--headless", "--disable-gpu", "--window-size=1024,768"],
     w3c: false,
-  });
+  };
 
-  await manga.loopUrl();
-})().catch((error) => {
-  console.log(error);
-  process.exit(1);
-});
+  await (await Manga.init(options)).loopUrl();
+})().catch(echoError);
