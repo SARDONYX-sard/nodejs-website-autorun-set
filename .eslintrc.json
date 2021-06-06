@@ -17,6 +17,7 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "arrow-body-style": ["error", "as-needed"],
+    "no-control-regex": "off",
     "sort-imports": [
       "error",
       {

@@ -1,4 +1,4 @@
-import { WebDriver } from "selenium-webdriver";
+import { Options, WebDriver } from "selenium-webdriver";
 import { sleep } from "../../libs/sleep";
 import { build, default_urls } from "./index";
 
@@ -7,7 +7,7 @@ import { build, default_urls } from "./index";
  * @param url - URL
  * @param driver - build Driver
  */
-export async function createNewTab(url: string, driver: WebDriver) {
+export async function createNewTab(url: string, driver: WebDriver): Promise<void> {
   await driver.executeScript("window.open(arguments[0], '_blank')", url);
 }
 
@@ -16,7 +16,7 @@ export async function createNewTab(url: string, driver: WebDriver) {
  * @param count -  Want to open tab number
  * @param driver - Build Driver
  */
-export async function switchNewTab(count: number, driver: WebDriver) {
+export async function switchNewTab(count: number, driver: WebDriver): Promise<void> {
   const tabs = await driver.getAllWindowHandles();
   await driver.switchTo().window(tabs[count + 1]);
 }
@@ -45,8 +45,12 @@ export async function switchNewTab(count: number, driver: WebDriver) {
  *
  *}
  */
-
-export function loopTab(url_lists = default_urls, waitMs?: number, buildOpts?: Object) {
+type AsyncFunc<T> = () => Promise<T>;
+export function loopTab(
+  url_lists = default_urls,
+  waitMs?: number,
+  buildOpts?: Options,
+): AsyncFunc<void> {
   let driver: WebDriver;
 
   return async () => {
@@ -66,10 +70,6 @@ export function loopTab(url_lists = default_urls, waitMs?: number, buildOpts?: O
         await sleep(waitMs);
         count++;
       }
-
-      // catch error
-    } catch (error) {
-      throw error;
     } finally {
       await driver.quit();
     }

@@ -2,7 +2,6 @@ import "chromedriver";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
 import * as chrome from "selenium-webdriver/chrome";
 import * as moment from "moment";
-import { sleep } from "./../../libs/sleep";
 
 let driver: ThenableWebDriver;
 
@@ -15,9 +14,7 @@ describe("saikeblogに対するseleniumTest", () => {
     driver = new Builder().setChromeOptions(options).forBrowser("chrome").build();
   });
 
-  afterAll(() => {
-    return driver.quit();
-  });
+  afterAll(() => driver.quit());
 
   it("正常系_表示_ページタイトル", async () => {
     // 指定したURLに遷移する

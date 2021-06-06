@@ -1,11 +1,12 @@
-import moment from "moment";
+import * as moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
 
-import { build, echoError, getUrlContent, loopTab, writeFile } from "../libs";
+import { build, echoError, getUrlContent, writeFile } from "../libs";
+// import { loopTab } from "../libs";
 
-async function loopUrl() {
-  await loopTab()();
-}
+// async function loopUrl() {
+//   await loopTab()();
+// }
 
 async function getDateFromGoogle() {
   // setting
@@ -27,7 +28,9 @@ async function getDateFromGoogle() {
     // Get date from HTML Element
     async (driver: WebDriver) => {
       const day_card = await driver.findElement(By.className("card-section"));
-      return await day_card.findElement(By.css("span")).getText();
+      const vk_bk = await day_card.findElement(By.className("vk_bk"));
+
+      return await vk_bk.findElement(By.css("span")).getText();
     },
 
     // Get locate from HTML Element
@@ -38,6 +41,7 @@ async function getDateFromGoogle() {
     driver,
   );
 
+  console.log(log);
   // write log
   const today = moment().format("YYYY-MM-DD");
   writeFile(`src/selenium/sample/logs/${today}.txt`, log ?? "Nothing data");

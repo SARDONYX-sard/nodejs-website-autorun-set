@@ -1,6 +1,6 @@
 import { ThenableWebDriver } from "selenium-webdriver";
 
-import { build, createNewTab, switchNewTab, default_urls } from "../../selenium/libs/index";
+import { build, createNewTab, default_urls, switchNewTab } from "../../selenium/libs/index";
 
 let driver: ThenableWebDriver;
 describe("seleniumのlibsテスト", () => {
@@ -11,9 +11,7 @@ describe("seleniumのlibsテスト", () => {
     });
   });
 
-  afterAll(() => {
-    return driver.quit();
-  });
+  afterAll(() => driver.quit());
 
   it("正常系_遷移_タブ", async () => {
     // Entry point

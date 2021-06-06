@@ -28,7 +28,7 @@ chrome.setDefaultService(service);
  *
  *}
  */
-export function build(options = {}) {
+export function build(options = {}): webdriver.ThenableWebDriver {
   // Setting webdriver args
   const capabilities = webdriver.Capabilities.chrome();
 
