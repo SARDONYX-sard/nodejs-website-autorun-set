@@ -5,7 +5,10 @@ import { build, createNewTab, switchNewTab, default_urls } from "../../selenium/
 let driver: ThenableWebDriver;
 describe("seleniumのlibsテスト", () => {
   beforeAll(() => {
-    driver = build();
+    driver = build({
+      args: ["--headless", "--disable-gpu", "--window-size=1024,768"],
+      w3c: false,
+    });
   });
 
   afterAll(() => {
