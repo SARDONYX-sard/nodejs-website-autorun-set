@@ -2,25 +2,37 @@
   "name": "auto-web",
   "version": "1.0.0",
   "description": "auto-web",
-  "main": "src/puppeteer/main.js",
+  "keywords": [],
+  "homepage": "https://github.com/SARDONYX-sard/nodejs-website-autorun-set",
+  "bugs": "https://github.com/SARDONYX-sard/nodejs-website-autorun-set/issues",
+  "license": "MIT",
+  "author": "sard",
+  "files": [
+    "lib",
+    "CHANGELOG.md",
+    "CODE_OF_CONDUCT.md",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  "main": "src/selenium/main.ts",
   "scripts": {
-    "puppeteer": "node src/puppeteer/main.js",
     "selenium": "npx ts-node src/selenium/main.ts",
     "selenium-sample": "npx ts-node src/selenium/sample/sample.ts",
-    "test": "npx jest --coverage"
+    "puppeteer": "node src/puppeteer/main.js",
+    "lint": "eslint ./src/**/*.ts",
+    "fix": "eslint --fix ./src/**/*.ts",
+    "test-selenium": "npx jest selenium.spec.ts --coverage",
+    "test": "npx jest --coverage",
+    "coverage": "npx codecov",
+    "clean": "npx rimraf ./src/selenium/custom/logs ./src/selenium/sample/logs  ./coverage"
   },
-  "keywords": [],
-  "author": "sard",
-  "license": "MIT",
   "dependencies": {
     "chalk": "^4.1.1",
     "chromedriver": "^91.0.0",
     "moment": "^2.29.1",
     "puppeteer": "10.0.0",
-    "selenium-webdriver": "^4.0.0-beta.3",
-    "ts-node": "10.0.0",
-    "tsconfig-paths": "^3.9.0",
-    "typescript": "^4.3.2"
+    "selenium-webdriver": "^4.0.0-beta.3"
   },
   "devDependencies": {
     "@types/jest": "26.0.23",
@@ -28,9 +40,23 @@
     "@types/selenium-webdriver": "4.0.13",
     "@typescript-eslint/eslint-plugin": "4.26.0",
     "@typescript-eslint/parser": "4.26.0",
+    "codecov": "^3.8.2",
     "eslint": "7.28.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-prettier": "^3.4.0",
     "jest": "^27.0.4",
-    "ts-jest": "27.0.2"
+    "jest-plugin-context": "^2.9.0",
+    "prettier": "^2.3.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "27.0.2",
+    "ts-node": "10.0.0",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^4.3.2"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-plugin-context/setup"
+    ]
   }
 }
