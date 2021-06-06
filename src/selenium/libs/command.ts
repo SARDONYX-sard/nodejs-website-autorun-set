@@ -13,15 +13,12 @@ export function echoError(error: any) {
  * Function to execute Windows commands.
  * @param command
  *
- * example:
+ * @example:pause script
+ * // 1. In sample.ts...
+ * execCommand("pause")
  *
- * execCommand("pause")    // Setting
- *
- * ↓
- *
- * // Execute the following command.
-
- * npx ts-node src/selenium/main.ts pause
+ * // 2. In terminal...
+ * npx ts-node src/selenium/sample/sample.ts pause
  */
 export function execCommand(command: string) {
   if (process.argv[2] == command) {

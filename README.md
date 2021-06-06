@@ -17,7 +17,6 @@
   - [Selenium](#selenium)
   - [Puppeteer](#puppeteer)
   - [Test](#test)
-- [Customize Selenium](#customize-selenium)
 - [Reference sites](#reference-sites)
 - [License](#license)
 
@@ -26,7 +25,7 @@
 
 ## What is that ?
 
-This is the Program of Puppeteer & selenium running on Node.js.
+This is the Program of Puppeteer & Selenium running on Node.js.
 
 The Selenium program allows you to open pre-specified URLs in sequence.
 
@@ -36,7 +35,7 @@ The Selenium program allows you to open pre-specified URLs in sequence.
 
 * npm or Yarn
 * Node.js 10.0.0 or higher
-* [VS Code Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)(if you want to do test)
+
 
 ## Installation
 
@@ -63,13 +62,13 @@ $ yarn install
 ### Selenium
 
 ```sh
-$ npx selenium
+$ npx selenium-sample
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
-$ yarn run selenium
+$ yarn run selenium-sample
 ```
 
 ### Puppeteer
@@ -86,41 +85,18 @@ $ yarn run puppeteer
 
 ### Test
 
-1. Open the file in the following path & start LiveServer.
-
-```sh
-src/__test__/selenium/test.html
-```
-
-2. Run command the following command.
+Run command the following command.
 
 ```sh
 $ npx test
+# or
+$ npx jest --coverage
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
 $ yarn run test
-```
-
-## Customize Selenium
-
-* If you want to customize the selenium acution,
-
-  you create the following file.
-
-Example:
-src/selenium/libs/urls.ts
-```javascript
-export const default_urls = [
-  "URL",
-  "URL",
-  "URL",
-  "URL",
-  "URL",
-  "URL",
-];
 ```
 
 ## Reference sites
