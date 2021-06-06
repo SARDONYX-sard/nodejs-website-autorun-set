@@ -1,4 +1,5 @@
 import * as fs from "fs";
+import * as chalk from "chalk";
 
 /**
  * Array writable write function.
@@ -9,10 +10,11 @@ export function writeFile(path: string, contents: string | string[]) {
   fs.writeFile(path, stripAnsi(`${contents}`), (err) => {
     // If the export fails
     if (err) {
-      console.log("Failed to export." + err);
+      console.log(chalk`{red Failed to write.}
+                        ${err}`);
       throw err;
     }
-    console.log("Output log.");
+    console.log("Write Complete.");
   });
 }
 
