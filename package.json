@@ -6,6 +6,7 @@
   "scripts": {
     "puppeteer": "node src/puppeteer/main.js",
     "selenium": "npx ts-node src/selenium/main.ts",
+    "selenium-sample": "npx ts-node src/selenium/sample/sample.ts",
     "test": "npx jest --coverage"
   },
   "keywords": [],

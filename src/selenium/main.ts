@@ -1,10 +1,5 @@
 import { Manga } from "./custom/custom-selenium";
 import { echoError } from "./libs";
-// import { loopTab } from "./libs";
-
-// (async () => {
-//   await loopTab()();
-// })().catch(echoError);
 
 (async () => {
   const options = {

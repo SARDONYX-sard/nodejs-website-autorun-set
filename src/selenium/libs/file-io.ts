@@ -10,11 +10,11 @@ export function writeFile(path: string, contents: string | string[]) {
   fs.writeFile(path, stripAnsi(`${contents}`), (err) => {
     // If the export fails
     if (err) {
-      console.log(chalk`{red Failed to write.}
+      console.log(chalk`{red Failed to write log.}
                         ${err}`);
       throw err;
     }
-    console.log("Write Complete.");
+    console.log(chalk`{Write log Complete.}`);
   });
 }
 
