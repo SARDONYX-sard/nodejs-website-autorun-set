@@ -21,7 +21,7 @@ export function echoError(error: any) {
  *
  * // Execute the following command.
 
- * npx ts-node src/selenium/main.ts --pause
+ * npx ts-node src/selenium/main.ts pause
  */
 export function execCommand(command: string) {
   if (process.argv[2] == command) {
