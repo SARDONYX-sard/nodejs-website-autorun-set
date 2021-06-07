@@ -22,7 +22,6 @@
     "puppeteer": "node src/puppeteer/main.js",
     "lint": "eslint ./src/**/*.ts",
     "fix": "eslint --fix ./src/**/*.ts",
-    "test-selenium": "npx jest selenium.spec.ts --coverage",
     "test": "npx jest --coverage",
     "coverage": "npx codecov",
     "clean": "npx rimraf ./src/selenium/custom/logs ./src/selenium/sample/logs  ./coverage"

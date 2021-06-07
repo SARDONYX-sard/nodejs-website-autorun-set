@@ -1,5 +1,5 @@
 import { Options, WebDriver } from "selenium-webdriver";
-import { sleep } from "../../libs/sleep";
+import { sleep } from "../../libs";
 import { build, default_urls } from "./index";
 
 /**

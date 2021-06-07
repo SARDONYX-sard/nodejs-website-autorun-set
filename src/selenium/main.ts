@@ -1,5 +1,6 @@
 import { Manga } from "./custom/custom-selenium";
-import { echoError } from "./libs";
+// common libs
+import { echoError } from "../libs";
 
 (async () => {
   const options = {

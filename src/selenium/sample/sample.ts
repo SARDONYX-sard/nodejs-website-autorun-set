@@ -1,7 +1,10 @@
 import * as moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
 
-import { build, echoError, getUrlContent, writeFile } from "../libs";
+// common libs
+import { echoError, writeFile } from "../../libs";
+// selenium libs
+import { build, getUrlContent } from "../libs";
 // import { loopTab } from "../libs";
 
 // async function loopUrl() {
