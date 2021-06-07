@@ -24,7 +24,7 @@
     "fix": "eslint --fix ./src/**/*.ts",
     "test": "npx jest --coverage",
     "coverage": "npx codecov",
-    "clean": "npx rimraf ./src/selenium/custom/logs ./src/selenium/sample/logs  ./coverage"
+    "clean": "npx rimraf ./src/selenium/custom/logs ./src/selenium/sample/logs ./src/puppeteer/img/* ./coverage"
   },
   "dependencies": {
     "chalk": "^4.1.1",

@@ -1,5 +1,4 @@
 import { Options, WebDriver } from "selenium-webdriver";
-import { sleep } from "../../libs";
 import { build, default_urls } from "./index";
 
 /**
@@ -48,7 +47,7 @@ export async function switchNewTab(count: number, driver: WebDriver): Promise<vo
 type AsyncFunc<T> = () => Promise<T>;
 export function loopTab(
   url_lists = default_urls,
-  waitMs?: number,
+  waitMs = 5000,
   buildOpts?: Options,
 ): AsyncFunc<void> {
   let driver: WebDriver;
@@ -67,7 +66,7 @@ export function loopTab(
 
         await switchNewTab(count, driver);
 
-        await sleep(waitMs);
+        await driver.sleep(waitMs);
         count++;
       }
     } finally {
