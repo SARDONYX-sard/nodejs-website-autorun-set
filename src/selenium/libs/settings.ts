@@ -1,6 +1,7 @@
 import "chromedriver";
-import chrome = require("selenium-webdriver/chrome");
-import webdriver = require("selenium-webdriver");
+
+import * as chrome from "selenium-webdriver/chrome";
+import * as webdriver from "selenium-webdriver";
 
 // Create driver instance
 const service = new chrome.ServiceBuilder().build();

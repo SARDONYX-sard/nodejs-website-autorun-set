@@ -16,10 +16,12 @@ export function echoError(error: Error): void {
  *
  * @example:pause script
  * // 1. In sample.ts...
- * execCommand("pause", --pause)
+ * execCommand("pause", /[^(-{1})](-{2})?pause/);
  *
  * // 2. In terminal...
  * npx ts-node src/selenium/sample/sample.ts --pause
+ * //or
+ * npx ts-node src/selenium/sample/sample.ts pause
  */
 export function execCommand(command: string, arg: string | RegExp = command): void {
   // if arg is string
