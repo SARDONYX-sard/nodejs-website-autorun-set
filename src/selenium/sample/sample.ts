@@ -1,15 +1,19 @@
 import * as moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
-
 // common libs
-import { echoError, writeFile } from "../../libs";
+import { echoError, execCommand, writeFile } from "../../libs";
 // selenium libs
 import { build, getUrlContent } from "../libs";
+
+// --------loop Tab sample function----------
 // import { loopTab } from "../libs";
 
 // async function loopUrl() {
 //   await loopTab()();
 // }
+
+// loopUrl().catch(echoError);
+// ------------------------------------------
 
 async function getDateFromGoogle() {
   // setting
@@ -31,9 +35,9 @@ async function getDateFromGoogle() {
     // Get date from HTML Element
     async (driver: WebDriver) => {
       const day_card = await driver.findElement(By.className("card-section"));
-      const vk_bk = await day_card.findElement(By.className("vk_bk"));
-
-      return await vk_bk.findElement(By.css("span")).getText();
+      const div = await day_card.findElement(By.css("div"));
+      const day_of_the_week = await (await day_card.findElement(By.css("div"))).getText();
+      return (await div.findElement(By.css("span")).getText()) + " " + day_of_the_week;
     },
 
     // Get locate from HTML Element
@@ -48,7 +52,9 @@ async function getDateFromGoogle() {
   // write log
   const today = moment().format("YYYY-MM-DD");
   writeFile(`src/selenium/sample/logs/${today}.txt`, log ?? "Nothing data");
+
+  // pause command
+  execCommand("pause");
 }
 
-// loopUrl().catch(echoError);
 getDateFromGoogle().catch(echoError);
