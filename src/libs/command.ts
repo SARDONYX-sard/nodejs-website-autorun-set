@@ -31,7 +31,7 @@ export function execCommand(command: string, arg: string | RegExp = command): vo
   }
 
   // if arg is RegExp
-  if (arg instanceof RegExp && arg.test(process.argv[2])) {
+  if (arg == RegExp(arg) && arg.test(process.argv[2])) {
     execute(command);
     return;
   }

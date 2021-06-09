@@ -1,11 +1,10 @@
 import "chromedriver";
-
-import * as chrome from "selenium-webdriver/chrome";
-import * as webdriver from "selenium-webdriver";
+import { Builder, Capabilities, ThenableWebDriver } from "selenium-webdriver";
+import { ServiceBuilder, setDefaultService } from "selenium-webdriver/chrome";
 
 // Create driver instance
-const service = new chrome.ServiceBuilder().build();
-chrome.setDefaultService(service);
+const service = new ServiceBuilder().build();
+setDefaultService(service);
 
 /**
  * @param options
@@ -29,11 +28,11 @@ chrome.setDefaultService(service);
  *
  *}
  */
-export function build(options = {}): webdriver.ThenableWebDriver {
+export function build(options = {}): ThenableWebDriver {
   // Setting webdriver args
-  const capabilities = webdriver.Capabilities.chrome();
+  const capabilities = Capabilities.chrome();
 
   capabilities.set("chromeOptions", options);
 
-  return new webdriver.Builder().withCapabilities(capabilities).build();
+  return new Builder().withCapabilities(capabilities).build();
 }

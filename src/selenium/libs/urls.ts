@@ -1,5 +1,5 @@
 import { WebDriver } from "selenium-webdriver";
-import * as chalk from "chalk";
+import chalk, { red } from "chalk";
 
 export const default_urls = [
   "https://www.google.com/",
@@ -48,7 +48,7 @@ export async function getUrlContent<T, U>(
 
       // Catch error
     } catch (e) {
-      const error_log = chalk.red("Failed to get element.");
+      const error_log = red`Failed to get element.`;
       console.log(error_log);
       console.log(e.message);
       await driver.quit();

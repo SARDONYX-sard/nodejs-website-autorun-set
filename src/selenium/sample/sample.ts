@@ -1,7 +1,7 @@
-import * as moment from "moment";
+import moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
 // common libs
-import { echoError, execCommand, writeFile } from "../../libs";
+import { echoError, execCommand, writeFiles } from "../../libs";
 // selenium libs
 import { build, getUrlContent } from "../libs";
 
@@ -51,7 +51,7 @@ async function getDateFromGoogle() {
   console.log(log);
   // write log
   const today = moment().format("YYYY-MM-DD");
-  writeFile(`src/selenium/sample/logs/${today}.txt`, log ?? "Nothing data");
+  writeFiles(`src/selenium/sample/logs/${today}.txt`, log ?? "Nothing data");
 
   // pause command
   execCommand("pause");
