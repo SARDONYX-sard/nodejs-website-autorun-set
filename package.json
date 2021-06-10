@@ -15,6 +15,10 @@
     "package.json",
     "README.md"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SARDONYX-sard/nodejs-website-autorun-set.git"
+  },
   "main": "src/selenium/main.ts",
   "scripts": {
     "selenium": "npx ts-node src/selenium/main.ts",
