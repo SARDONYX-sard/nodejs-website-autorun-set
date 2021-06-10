@@ -21,15 +21,15 @@
   },
   "main": "src/selenium/main.ts",
   "scripts": {
-    "selenium": "npx ts-node src/selenium/main.ts",
-    "selenium-sample": "npx ts-node src/selenium/sample/sample.ts",
+    "selenium": "npx ts-node src/selenium/custom/main.ts",
+    "selenium-sample": "npx ts-node src/selenium/main.ts",
     "puppeteer": "node src/puppeteer/main.js",
     "lint": "eslint ./src/**/*.ts",
     "fix": "eslint --fix ./src/**/*.ts",
     "build": "tsc",
     "test": "jest --coverage",
     "coverage": "codecov",
-    "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/sample/logs ./src/puppeteer/img/* ./coverage ./lib"
+    "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/logs ./src/puppeteer/img/* ./coverage ./lib"
   },
   "dependencies": {
     "chalk": "^4.1.1",
