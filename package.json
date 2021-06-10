@@ -26,6 +26,7 @@
     "puppeteer": "node src/puppeteer/main.js",
     "lint": "eslint ./src/**/*.ts",
     "fix": "eslint --fix ./src/**/*.ts",
+    "build": "npx tsc",
     "test": "npx jest --coverage",
     "coverage": "npx codecov",
     "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/sample/logs ./src/puppeteer/img/* ./coverage"
