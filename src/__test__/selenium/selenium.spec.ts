@@ -28,5 +28,5 @@ describe("seleniumのlibsテスト", () => {
 
     // 検証
     expect(title).toBe("Google");
-  });
+  }, 30000);
 });
