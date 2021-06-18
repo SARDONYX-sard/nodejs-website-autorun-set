@@ -15,8 +15,7 @@ export function writeFiles(path: string, contents: string | string[]): void {
   writeFile(path, stripAnsi(`${contents}`), (err) => {
     // If the export fails
     if (err) {
-      console.log(chalk`{red Failed to write log.}
-                        ${err}`);
+      console.log(chalk`{red Failed to write log.}\n${err}`);
       throw err;
     }
     console.log(chalk`{green Write log Complete.}`);
