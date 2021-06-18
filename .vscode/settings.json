@@ -43,5 +43,6 @@
   "cSpell.words": [
     "KHTML",
     "chks"
-  ]
+  ],
+  "typescript.tsdk": "node_modules//typescript//lib"
 }
