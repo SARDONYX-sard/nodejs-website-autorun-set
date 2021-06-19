@@ -18,6 +18,9 @@ jobs:
           paths:
             - "node_modules"
       - run:
+          command: chromedriver
+          background: true
+      - run:
           name: "Execute linters"
           command: "npm run lint"
       - run:
