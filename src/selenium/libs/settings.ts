@@ -14,11 +14,16 @@ setDefaultService(service);
  *
  *    args: [
  *
+ *      // Use headless mode
  *      "--headless",
  *
- *      "--no-sandbox",
- *
+ *      // Flag temporarily required in headless mode (will be unnecessary soon)
  *      "--disable-gpu",
+ *
+ *      // Disable all extensions. Also disable user scripts.
+ *      "--disable-extensions",
+ *
+ *      "--no-sandbox",
  *
  *      `--window-size=1980,1200`,
  *
