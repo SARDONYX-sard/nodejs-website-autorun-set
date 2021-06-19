@@ -5,16 +5,16 @@ jobs:
   node_v12:
     working_directory: "~/repo"
     docker:
-      - image: "node:12.22"
+      - image: "node:12.22.0-browsers"
     steps:
       - "checkout"
       - restore_cache:
-          key: 'node-v12.11-node-modules-{{ checksum "package.json" }}'
+          key: 'node-12.22.0-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install packages"
           command: "npm ci"
       - save_cache:
-          key: 'node-v12.11-node-modules-{{ checksum "package.json" }}'
+          key: 'node-12.22.0-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
             - "node_modules"
       - run:
@@ -26,16 +26,16 @@ jobs:
   node_v10:
     working_directory: "~/repo"
     docker:
-      - image: "node:10.24"
+      - image: "node:10.24.0-browsers"
     steps:
       - "checkout"
       - restore_cache:
-          key: 'node-v10.15-node-modules-{{ checksum "package.json" }}'
+          key: 'node-10.24.0-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install packages"
           command: "npm ci"
       - save_cache:
-          key: 'node-v10.15-node-modules-{{ checksum "package.json" }}'
+          key: 'node-10.24.0-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
             - "node_modules"
       - run:
