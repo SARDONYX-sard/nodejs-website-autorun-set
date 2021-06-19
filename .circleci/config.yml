@@ -9,6 +9,7 @@ jobs:
     docker:
       - image: "cimg/node:12.22.0-browsers"
     steps:
+      - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
           key: 'node-12.22.0-browsers-node-modules-{{ checksum "package.json" }}'
@@ -30,6 +31,7 @@ jobs:
     docker:
       - image: "cimg/node:10.24.0-browsers"
     steps:
+      - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
           key: 'node-10.24.0-browsers-node-modules-{{ checksum "package.json" }}'

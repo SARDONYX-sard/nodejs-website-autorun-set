@@ -1,6 +1,4 @@
-if (process.platform === "win32") {
-  require("chromedriver");
-}
+import "chromedriver";
 import { Builder, Capabilities, ThenableWebDriver } from "selenium-webdriver";
 import { ServiceBuilder, setDefaultService } from "selenium-webdriver/chrome";
 
