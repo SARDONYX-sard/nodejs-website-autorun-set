@@ -29,7 +29,7 @@
     "build": "tsc",
     "test": "jest --coverage",
     "coverage": "codecov",
-    "clean": "rm -rf ./src/selenium/*/logs ./src/puppeteer/img/* ./coverage ./lib"
+    "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/logs ./src/puppeteer/img/* ./coverage ./lib"
   },
   "dependencies": {
     "chalk": "^4.1.1",
