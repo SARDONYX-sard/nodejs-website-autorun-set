@@ -18,11 +18,15 @@ jobs:
           paths:
             - "node_modules"
       - run:
-          command: chromedriver
-          background: true
-      - run:
           name: "Execute linters"
           command: "npm run lint"
+      - run:
+          name: "Download selenium"
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      - run:
+          name: "Start selenium"
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
+          background: true
       - run:
           name: "Execute tests"
           command: "npm test && npm run coverage"
@@ -45,7 +49,11 @@ jobs:
           name: "Execute linters"
           command: "npm run lint"
       - run:
-          command: chromedriver
+          name: "Download selenium"
+          command: curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
+      - run:
+          name: "Start selenium"
+          command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
       - run:
           name: "Execute tests"
