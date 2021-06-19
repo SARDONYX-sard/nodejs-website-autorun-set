@@ -1,4 +1,4 @@
-import { Options, WebDriver } from "selenium-webdriver";
+import { WebDriver } from "selenium-webdriver";
 import { build, default_urls } from "./index";
 
 /**
@@ -21,20 +21,32 @@ export async function switchNewTab(count: number, driver: WebDriver): Promise<vo
 }
 
 // ----------------------------------------------------------------
-
+type AsyncFunc<T> = () => Promise<T>;
+type Options = {
+  args: string[];
+  w3c: boolean;
+};
 /**
- * @param {Object} buildOpts
+ * @param url_lists
+ * @param waitMs
+ * @param buildOpts
+ *
  * - example:
  *
  *{
  *
  *    args: [
  *
+ *      // Use headless mode
  *      "--headless",
  *
- *      "--no-sandbox",
- *
+ *      // Flag temporarily required in headless mode (will be unnecessary soon)
  *      "--disable-gpu",
+ *
+ *      // Disable all extensions. Also disable user scripts.
+ *      "--disable-extensions",
+ *
+ *      "--no-sandbox",
  *
  *      `--window-size=1980,1200`,
  *
@@ -44,7 +56,6 @@ export async function switchNewTab(count: number, driver: WebDriver): Promise<vo
  *
  *}
  */
-type AsyncFunc<T> = () => Promise<T>;
 export function loopTab(
   url_lists = default_urls,
   waitMs = 5000,
