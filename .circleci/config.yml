@@ -5,7 +5,7 @@ jobs:
   node_v12:
     working_directory: "~/repo"
     docker:
-      - image: "cimg/12.22.0-browsers"
+      - image: "cimg/node:12.22.0-browsers"
     steps:
       - "checkout"
       - restore_cache:
