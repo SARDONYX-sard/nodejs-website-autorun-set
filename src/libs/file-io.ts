@@ -9,7 +9,7 @@ import chalk from "chalk";
 export async function writeFiles(path: string, contents: string | string[]): Promise<void> {
   try {
     // Make dir if not exist dir
-    const dir_path = path.replace(/([^/]+?)?$/, "");
+    const dir_path = path.replace(/(?:[^/]+?)?$/, "");
     mkdir(dir_path, { recursive: true });
 
     // write file
