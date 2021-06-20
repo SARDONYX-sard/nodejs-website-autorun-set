@@ -1,5 +1,5 @@
 import moment from "moment";
-import { readFile, rmdir } from "fs/promises";
+import { promises as fsp } from "fs";
 
 import { writeFiles } from "./file-io";
 
@@ -22,9 +22,9 @@ describe("file-io", () => {
     );
 
     // read
-    const result = (await readFile(path, "utf-8")).replace(/\s*/g, "");
+    const result = (await fsp.readFile(path, "utf-8")).replace(/\s*/g, "");
     console.log(result);
     expect(result).toBe("HelloWorld");
-    rmdir(path, { recursive: true });
+    fsp.rmdir(path, { recursive: true });
   });
 });

@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from "fs/promises";
+import { promises as fsp } from "fs";
 import chalk from "chalk";
 
 /**
@@ -10,10 +10,10 @@ export async function writeFiles(path: string, contents: string | string[]): Pro
   try {
     // Make dir if not exist dir
     const dir_path = path.replace(/(?:[^/]+?)?$/, "");
-    mkdir(dir_path, { recursive: true });
+    fsp.mkdir(dir_path, { recursive: true });
 
     // write file
-    await writeFile(path, stripAnsi(`${contents}`));
+    await fsp.writeFile(path, stripAnsi(`${contents}`));
     console.log(chalk`{green Completed writing the log.}`);
 
     // error catch
