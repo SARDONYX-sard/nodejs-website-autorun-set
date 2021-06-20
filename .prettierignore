@@ -16,6 +16,7 @@ nbproject
 logs
 lib
 
+*.example
 *.png
 custom
 

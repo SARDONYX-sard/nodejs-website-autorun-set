@@ -23,9 +23,8 @@
   "scripts": {
     "selenium": "npx ts-node src/selenium/custom/main.ts",
     "selenium-sample": "npx ts-node src/selenium/main.ts",
-    "puppeteer": "node src/puppeteer/main.js",
+    "puppeteer": "npx ts-node src/puppeteer/main.ts",
     "lint": "eslint ./src/**/*.ts",
-    "fix": "eslint --fix ./src/**/*.ts",
     "build": "tsc",
     "test": "jest --coverage",
     "coverage": "codecov",
@@ -72,7 +71,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix ./src/**/*",
-      "prettier --write ./src /**/*"
+      "prettier --write ./src/**/*"
     ]
   }
 }
