@@ -25,10 +25,9 @@ describe("tabs", () => {
     // Switch to a new tab
     await switchNewTab(0, driver);
 
-    // 要素を取得
+    // get title element
     const title = await driver.getTitle();
 
-    // 検証
     expect(title).toBe("Google");
   }, 30000);
 });

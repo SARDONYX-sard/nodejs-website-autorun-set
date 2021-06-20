@@ -4,7 +4,7 @@ import { By, WebDriver } from "selenium-webdriver";
 // common libs
 import { execCommand, writeFiles } from "../../libs";
 // selenium libs
-import { build } from "../libs";
+import { build } from ".";
 
 export const default_urls = [
   "https://www.google.com/",
@@ -66,49 +66,60 @@ export async function getUrlContent<T, U>(
  * sample function
  *
  * Write log file of date information taken from google.
- * @param url URL default: google.com/search?q=today+date
+ * @param url default: https://www.google.com/search?q=today+date
  *
  * example:
  *
  * - America "https://www.google.com/search?q=today+date&gl=us&hl=en&pws=0&gws_rd=cr"
+ * @param isTest Add the word `.test` to filename? - default: false
  */
 export async function getDateFromGoogle(
   url = "https://www.google.com/search?q=today+date",
-): Promise<void> {
+  isTest = false,
+): Promise<string | undefined> {
   // setting
   const driver = await build({
     args: ["--headless", "--disable-gpu"],
     w3c: false,
   });
 
-  // Go to Google URL
-  await driver.get("https://www.google.com/search?q=today+date");
+  try {
+    // Go to Google URL
+    await driver.get("https://www.google.com/search?q=today+date");
 
-  const log = await getUrlContent(
-    // domain:RegExp
-    "google.com/search",
-    url,
-    // Get date from HTML Element
-    async (driver: WebDriver) => {
-      const day_card = await driver.findElement(By.className("card-section"));
-      const div = await day_card.findElement(By.css("div"));
-      const day_of_the_week = await (await day_card.findElement(By.css("div"))).getText();
-      return (await div.findElement(By.css("span")).getText()) + " " + day_of_the_week;
-    },
+    const log = await getUrlContent(
+      // domain:RegExp
+      "google.com/search",
+      url,
+      // Get date from HTML Element
+      async (driver: WebDriver) => {
+        const day_card = await driver.findElement(By.className("card-section"));
+        const div = await day_card.findElement(By.css("div"));
+        const day_of_the_week = await (await day_card.findElement(By.css("div"))).getText();
+        return (await div.findElement(By.css("span")).getText()) + " " + day_of_the_week;
+      },
 
-    // Get locate from HTML Element
-    async (driver: WebDriver) => {
-      const elm = await driver.findElement(By.className("card-section"));
-      return await (await elm.findElement(By.className("vk_gy"))).getText();
-    },
-    driver,
-  );
+      // Get locate from HTML Element
+      async (driver: WebDriver) => {
+        const elm = await driver.findElement(By.className("card-section"));
+        return await (await elm.findElement(By.className("vk_gy"))).getText();
+      },
+      driver,
+    );
 
-  console.log(log);
-  // write log
-  const today = moment().format("YYYY-MM-DD");
-  writeFiles(`src/selenium/logs/${today}.txt`, log ?? "Nothing data");
+    console.log(log);
+    // write log
+    const today = moment().format("YYYY-MM-DD");
+    writeFiles(`src/selenium/logs/${today}.txt`, log ?? "Nothing data", isTest);
 
-  // pause command
-  execCommand("pause");
+    // pause command
+    execCommand("pause");
+
+    return log;
+  } catch (error) {
+    console.error(error);
+    throw new Error("Couldn't get date from google. ");
+  } finally {
+    driver.quit();
+  }
 }

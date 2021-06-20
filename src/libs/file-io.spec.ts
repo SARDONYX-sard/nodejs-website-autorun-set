@@ -11,7 +11,7 @@ describe("file-io", () => {
   it("file-io", async () => {
     // write log
     const today = moment().format("YYYY-MM-DD");
-    const path = `src/selenium/logs/${today}.txt`;
+    const path = `src/selenium/logs/${today}-file-io.txt`;
     await writeFiles(
       path,
       // contents

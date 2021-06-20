@@ -1,5 +1,5 @@
 import { WebDriver } from "selenium-webdriver";
-import { build, default_urls } from "./index";
+import { build, default_urls } from ".";
 
 /**
  *  Create a new Tab
