@@ -56,8 +56,6 @@ export async function getUrlContent<T, U>(
       const error_log = red`Failed to get element.`;
       console.log(error_log);
       console.log(e.message);
-      await driver.quit();
-      throw e;
     }
   }
 }
@@ -110,16 +108,15 @@ export async function getDateFromGoogle(
     console.log(log);
     // write log
     const today = moment().format("YYYY-MM-DD");
-    writeFiles(`src/selenium/logs/${today}.txt`, log ?? "Nothing data", isTest);
-
-    // pause command
-    execCommand("pause");
+    await writeFiles(`src/selenium/logs/${today}.txt`, log ?? "Nothing data", isTest);
 
     return log;
   } catch (error) {
     console.error(error);
     throw new Error("Couldn't get date from google. ");
   } finally {
-    driver.quit();
+    await driver.quit();
+    // pause command
+    execCommand("pause");
   }
 }
