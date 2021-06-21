@@ -12,8 +12,12 @@ describe("getDateFromGoogle", () => {
       const log = await getDateFromGoogle(undefined, true);
       // test
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
+
+      // catch error
     } catch (e) {
-      expect(e).toMatch("error");
+      return expect(e).toMatch("error");
+
+      // finally
     } finally {
       await fsp.rmdir(path, { recursive: true });
     }
