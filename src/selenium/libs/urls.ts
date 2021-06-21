@@ -1,4 +1,4 @@
-import chalk, { red } from "chalk";
+import chalk from "chalk";
 import moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
 // common libs
@@ -53,7 +53,7 @@ export async function getUrlContent<T, U>(
 
       // Catch error
     } catch (e) {
-      const error_log = red`Failed to get element.`;
+      const error_log = chalk`{red Failed to get element.}`;
       console.log(error_log);
       console.log(e.message);
     }
