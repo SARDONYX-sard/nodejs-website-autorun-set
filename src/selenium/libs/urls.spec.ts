@@ -6,7 +6,7 @@ import { getDateFromGoogle } from "./urls";
 describe("getDateFromGoogle", () => {
   it("should be able to get the date", async () => {
     try {
-      const log = await getDateFromGoogle(undefined, true);
+      const log = await getDateFromGoogle(undefined, undefined, true);
       // test
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
 
