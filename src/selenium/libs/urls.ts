@@ -73,6 +73,7 @@ export async function getUrlContent<T, U>(
  */
 export async function getDateFromGoogle(
   url = "https://www.google.com/search?q=today+date",
+  sleepMs = 5000,
   isTest = false,
 ): Promise<string | undefined> {
   // setting
@@ -84,6 +85,8 @@ export async function getDateFromGoogle(
   try {
     // Go to Google URL
     await driver.get("https://www.google.com/search?q=today+date");
+
+    await driver.sleep(sleepMs);
 
     const log = await getUrlContent(
       // domain:RegExp
