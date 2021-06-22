@@ -12,7 +12,7 @@ describe("tabs", () => {
     });
   });
 
-  afterAll(() => driver.quit());
+  afterAll(async () => await driver.quit());
 
   it("should be able to create and switch tabs", async () => {
     const url = "https://www.google.com/";
@@ -34,19 +34,15 @@ describe("tabs", () => {
 
 describe("tabs", () => {
   it("should automatically cycle through the URLs", async () => {
-    async function loopUrl() {
-      await loopTab(undefined, undefined, {
-        args: ["--headless", "--disable-gpu", "--disable-extensions"],
-        w3c: false,
-      })();
+    const loopUrl = loopTab(undefined, 3000, {
+      args: ["--headless", "--disable-gpu", "--disable-extensions"],
+      w3c: false,
+    });
 
-      // Get the element
-      const title = await driver.getTitle();
-
-      // Verification
+    const titles = await loopUrl();
+    // Verification
+    titles.forEach((title) => {
       expect(title).toBe("Google");
-    }
-
-    loopUrl();
+    });
   }, 30000);
 });

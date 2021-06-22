@@ -27,11 +27,13 @@ type Options = {
   w3c: boolean;
 };
 /**
- * @param url_lists
- * @param waitMs
- * @param buildOpts
+ * Closure function that traverses the URL and returns an array of site titles.
+ * @param url_lists default: https://www.google.com/ * 5
+ * @param waitMs sleep time. default: 5000ms
+ * @param buildOpts default: {}
+ * @returns `an array of site titles`
  *
- * - example:
+ * @example
  *
  *{
  *
@@ -60,11 +62,16 @@ export function loopTab(
   url_lists = default_urls,
   waitMs = 5000,
   buildOpts?: Options,
-): AsyncFunc<void> {
+): AsyncFunc<string[]> {
   let driver: WebDriver;
 
+  /**
+   * Looping URLs
+   */
   return async () => {
     try {
+      const titles: string[] = [];
+
       // Build webdriver
       driver = await build(buildOpts);
 
@@ -77,9 +84,14 @@ export function loopTab(
 
         await switchNewTab(count, driver);
 
+        // Get the element
+        titles.push(await driver.getTitle());
+
         await driver.sleep(waitMs);
         count++;
       }
+
+      return titles;
     } finally {
       await driver.quit();
     }
