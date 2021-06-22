@@ -14,7 +14,7 @@ describe("getDateFromGoogle", () => {
     } catch (e) {
       return expect(e).toMatch("error");
     }
-  });
+  }, 30000);
 
   it("should be able to read test log file", async () => {
     // create log path
