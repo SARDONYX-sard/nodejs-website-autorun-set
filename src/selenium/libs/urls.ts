@@ -69,6 +69,7 @@ export async function getUrlContent<T, U>(
  * example:
  *
  * - America "https://www.google.com/search?q=today+date&gl=us&hl=en&pws=0&gws_rd=cr"
+ * @param sleepMs sleep time minute  - default: 5000 ms
  * @param isTest Add the word `-test` to filename? - default: false
  */
 export async function getDateFromGoogle(
@@ -111,9 +112,13 @@ export async function getDateFromGoogle(
     console.log(log);
     // write log
     const today = moment().format("YYYY-MM-DD");
-    await writeFiles(`src/selenium/logs/${today}.txt`, log ?? "Nothing data", isTest);
 
-    return log;
+    if (log) {
+      await writeFiles(`src/selenium/logs/${today}.txt`, log, isTest);
+      return log;
+    }
+
+    // catch error
   } catch (error) {
     console.error(error);
     throw new Error("Couldn't get date from google. ");
