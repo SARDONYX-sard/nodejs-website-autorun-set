@@ -16,7 +16,6 @@ describe("command", () => {
 
     it("should return true", async () => {
       try {
-        expect(execCommand("echo Test", /[^(-{1})](-{2})?echo/)).toBeFalsy();
         expect(execute("echo Test")).toBeTruthy();
 
         // error catch
