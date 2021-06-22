@@ -69,7 +69,7 @@ export async function getUrlContent<T, U>(
  * example:
  *
  * - America "https://www.google.com/search?q=today+date&gl=us&hl=en&pws=0&gws_rd=cr"
- * @param isTest Add the word `.test` to filename? - default: false
+ * @param isTest Add the word `-test` to filename? - default: false
  */
 export async function getDateFromGoogle(
   url = "https://www.google.com/search?q=today+date",
