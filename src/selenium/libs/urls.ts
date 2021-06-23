@@ -27,8 +27,8 @@ export const default_urls = [
 export async function getUrlContent<T, U>(
   domain: string,
   url: string,
-  getLatest_title: (driver: WebDriver) => Promise<T>,
-  getPublished_elem: (driver: WebDriver) => Promise<U>,
+  getElement1: (driver: WebDriver) => Promise<T>,
+  getElement2: (driver: WebDriver) => Promise<U>,
   driver: WebDriver,
 ): Promise<string | undefined> {
   if (RegExp(`^https?://.*${domain}.*`).test(url)) {
@@ -37,18 +37,17 @@ export async function getUrlContent<T, U>(
       const title = await driver.getTitle();
 
       // get latest title
-      const latest_title = await getLatest_title(driver);
+      const element1 = await getElement1(driver);
 
       // Get published
-      const published = await getPublished_elem(driver);
+      const element2 = await getElement2(driver);
 
       const log = chalk`
-        Title: {blue ${title}}
-        Element1: {cyan ${latest_title}}
-        Element2: {green ${published}}
+        Title: {yellow ${title}}
+        Element1: {cyan ${element1}}
+        Element2: {green ${element2}}
         `;
 
-      // console.log(log);
       return log;
 
       // Catch error
@@ -64,55 +63,70 @@ export async function getUrlContent<T, U>(
  * sample function
  *
  * Write log file of date information taken from google.
- * @param url default: https://www.google.com/search?q=today+date
+ * @param url default: https://www.google.com/search?q=today+date+and+weather
  *
- * example:
+ * Location example:
  *
- * - America "https://www.google.com/search?q=today+date&gl=us&hl=en&pws=0&gws_rd=cr"
+ * - America: URL + "&gl=us&hl=en&pws=0&gws_rd=cr"
  * @param sleepMs sleep time minute  - default: 5000 ms
  * @param isTest Add the word `-test` to filename? - default: false
  */
 export async function getDateFromGoogle(
-  url = "https://www.google.com/search?q=today+date",
+  url = "https://www.google.com/search?q=today+date+and+weather",
   sleepMs = 5000,
   isTest = false,
 ): Promise<string | undefined> {
   // setting
   const driver = await build({
-    args: ["--headless", "--disable-gpu"],
+    // args: ["--headless", "--disable-gpu"],
     w3c: false,
   });
+  // date (ex.2021-6-23)
+  const today = moment().format("YYYY-MM-DD");
 
   try {
     // Go to Google URL
-    await driver.get("https://www.google.com/search?q=today+date");
-
-    await driver.sleep(sleepMs);
+    await driver.get(url);
 
     const log = await getUrlContent(
       // domain:RegExp
       "google.com/search",
       url,
+
       // Get date from HTML Element
       async (driver: WebDriver) => {
-        const day_card = await driver.findElement(By.className("card-section"));
-        const div = await day_card.findElement(By.css("div"));
-        const day_of_the_week = await (await day_card.findElement(By.css("div"))).getText();
-        return (await div.findElement(By.css("span")).getText()) + " " + day_of_the_week;
+        await driver.sleep(sleepMs);
+        // Get a day of the week (ex. Monday)
+        const dow = await driver.findElement(By.id("wob_dts")).getText();
+
+        return `Today: ${today} ${dow}`;
       },
 
-      // Get locate from HTML Element
+      // Get date from HTML Element
       async (driver: WebDriver) => {
-        const elm = await driver.findElement(By.className("card-section"));
-        return await (await elm.findElement(By.className("vk_gy"))).getText();
+        // Temperature: ℃(ex. 27)
+        const celsius = await driver.findElement(By.id("wob_tm")).getText();
+        // Probability of precipitation: (ex. 60%)
+        const pp = await driver.findElement(By.id("wob_pp")).getText();
+        // (ex. Clear evening to cloudy)
+        const weather = await driver.findElement(By.id("wob_dc")).getText();
+
+        return `
+                  Temperature: ${celsius}℃
+                  Probability of precipitation: ${pp}
+                  Weather: ${weather}
+              `;
       },
+
       driver,
     );
 
-    console.log(log);
-    // write log
-    const today = moment().format("YYYY-MM-DD");
+    console.log(
+      chalk`{green ---------------- Result -------------------}
+            ${log}`,
+    );
 
+    // write log
     if (log) {
       await writeFiles(`src/selenium/logs/${today}.txt`, log, isTest);
       return log;
@@ -122,9 +136,10 @@ export async function getDateFromGoogle(
   } catch (error) {
     console.error(error);
     throw new Error("Couldn't get date from google. ");
+
+    // finally
   } finally {
     await driver.quit();
-    // pause command
     execCommand("pause");
   }
 }
