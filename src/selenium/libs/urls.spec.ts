@@ -27,7 +27,7 @@ describe("getDateFromGoogle", () => {
           `
           Title: today date - Google 検索
           Element1: 2021年6月22日 火曜日, 2021年6月22日
-          Element2: 愛知県豊田市の日付
+          Element2: 
           `,
         );
       }
