@@ -21,11 +21,7 @@ export async function switchNewTab(count: number, driver: WebDriver): Promise<vo
 }
 
 // ----------------------------------------------------------------
-type AsyncFunc<T> = () => Promise<T>;
-type Options = {
-  args: string[];
-  w3c: boolean;
-};
+
 /**
  * Closure function that traverses the URL and returns an array of site titles.
  * @param url_lists default: https://www.google.com/ * 5
@@ -62,7 +58,7 @@ export function loopTab(
   url_lists = default_urls,
   waitMs = 5000,
   buildOpts?: Options,
-): AsyncFunc<string[]> {
+): AsyncFunc<string[] | undefined> {
   let driver: WebDriver;
 
   /**
@@ -92,6 +88,8 @@ export function loopTab(
       }
 
       return titles;
+    } catch (e) {
+      console.error(e);
     } finally {
       await driver.quit();
     }
