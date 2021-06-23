@@ -87,6 +87,7 @@ export async function getDateFromGoogle(
   try {
     // Go to Google URL
     await driver.get(url);
+    await driver.sleep(sleepMs);
 
     const log = await getUrlContent(
       // domain:RegExp
@@ -95,7 +96,6 @@ export async function getDateFromGoogle(
 
       // Get date from HTML Element
       async (driver: WebDriver) => {
-        await driver.sleep(sleepMs);
         // Get a day of the week (ex. Monday)
         const dow = await driver.findElement(By.id("wob_dts")).getText();
 
