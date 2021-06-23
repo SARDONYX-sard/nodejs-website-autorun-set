@@ -20,8 +20,9 @@ describe("getArizonaWeatherFromGoogle", () => {
     // create log path
     const today = moment().format("YYYY-MM-DD");
     const path = `src/selenium/logs/${today}-test.txt`;
+    const dir = path.replace(/(?:[^/]+?)?(?:-test)?$/, "");
     try {
-      if (!fs.existsSync(path)) {
+      if (!fs.existsSync(dir)) {
         await fsp.writeFile(
           path,
           `
@@ -38,7 +39,7 @@ describe("getArizonaWeatherFromGoogle", () => {
       // read test log file
       const log = await fsp.readFile(path, "utf-8");
       // test
-      await fsp.rmdir(path, { recursive: true });
+      await fsp.rm(path, { recursive: true });
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
 
       // catch error
