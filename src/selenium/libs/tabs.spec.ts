@@ -45,7 +45,10 @@ describe("tabs", () => {
           w3c: false,
         });
 
-        const titles = await loopUrl();
+        const titles = (await loopUrl()) as string[] | undefined;
+
+        if (!titles) throw new Error("Couldn't get titles'");
+
         // Verification
         titles.forEach((title) => {
           expect(title).toBe("Google");

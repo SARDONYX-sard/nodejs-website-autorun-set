@@ -7,7 +7,12 @@ import { build, default_urls } from ".";
  * @param driver - build Driver
  */
 export async function createNewTab(url: string, driver: WebDriver): Promise<void> {
-  await driver.executeScript("window.open(arguments[0], '_blank')", url);
+  try {
+    await driver.executeScript("window.open(arguments[0], '_blank')", url);
+  } catch (e) {
+    console.error(e);
+    throw new Error("Couldn't create new tab'");
+  }
 }
 
 /**
@@ -16,8 +21,13 @@ export async function createNewTab(url: string, driver: WebDriver): Promise<void
  * @param driver - Build Driver
  */
 export async function switchNewTab(count: number, driver: WebDriver): Promise<void> {
-  const tabs = await driver.getAllWindowHandles();
-  await driver.switchTo().window(tabs[count + 1]);
+  try {
+    const tabs = await driver.getAllWindowHandles();
+    await driver.switchTo().window(tabs[count + 1]);
+  } catch (e) {
+    console.error(e);
+    throw new Error("Couldn't switch tab'");
+  }
 }
 
 // ----------------------------------------------------------------
@@ -64,7 +74,7 @@ export function loopTab(
   /**
    * Looping URLs
    */
-  return async () => {
+  return async (): Promise<string[] | undefined> => {
     try {
       const titles: string[] = [];
 
