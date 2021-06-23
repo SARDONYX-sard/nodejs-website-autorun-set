@@ -1,12 +1,12 @@
 import fs, { promises as fsp } from "fs";
 import moment from "moment";
 // selenium libs
-import { getDateFromGoogle } from "./urls";
+import { getArizonaWeatherFromGoogle } from "./urls";
 
-describe("getDateFromGoogle", () => {
+describe("getArizonaWeatherFromGoogle", () => {
   it("should be able to get the date", async () => {
     try {
-      const log = await getDateFromGoogle(undefined, undefined, true);
+      const log = await getArizonaWeatherFromGoogle(undefined, undefined, true);
       // test
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
 
@@ -25,9 +25,12 @@ describe("getDateFromGoogle", () => {
         await fsp.writeFile(
           path,
           `
-          Title: today date and weather
-          Element1:
+          Title: arizona weather - Google Search
+          Element1: Today: 2021-06-23 Wednesday 7:00 AM
           Element2:
+                    Temperature: 84°C
+                    Precipitation: 59%
+                    Weather: Light rain showers
           `,
         );
       }

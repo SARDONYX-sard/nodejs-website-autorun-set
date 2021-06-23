@@ -60,10 +60,10 @@ export async function getUrlContent<T, U>(
 }
 
 /**
- * sample function
+ * sample function.(Get the weather for Arizona, USA)
  *
  * Write log file of date information taken from google.
- * @param url default: https://www.google.com/search?q=today+date+and+weather
+ * @param url default: https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr
  *
  * Location example:
  *
@@ -71,8 +71,8 @@ export async function getUrlContent<T, U>(
  * @param sleepMs sleep time minute  - default: 5000 ms
  * @param isTest Add the word `-test` to filename? - default: false
  */
-export async function getDateFromGoogle(
-  url = "https://www.google.com/search?q=today+date+and+weather",
+export async function getArizonaWeatherFromGoogle(
+  url = "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr",
   sleepMs = 5000,
   isTest = false,
 ): Promise<string | undefined> {
@@ -104,16 +104,16 @@ export async function getDateFromGoogle(
 
       // Get date from HTML Element
       async (driver: WebDriver) => {
-        // Temperature: ℃(ex. 27)
+        // Temperature: °C(ex. 27)
         const celsius = await driver.findElement(By.id("wob_tm")).getText();
         // Probability of precipitation: (ex. 60%)
         const pp = await driver.findElement(By.id("wob_pp")).getText();
-        // (ex. Clear evening to cloudy)
+        // (ex. Light rain showers)
         const weather = await driver.findElement(By.id("wob_dc")).getText();
 
         return `
-                  Temperature: ${celsius}℃
-                  Probability of precipitation: ${pp}
+                  Temperature: ${celsius}°C
+                  Precipitation: ${pp}
                   Weather: ${weather}
               `;
       },
