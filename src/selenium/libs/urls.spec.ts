@@ -39,7 +39,7 @@ describe("getArizonaWeatherFromGoogle", () => {
       // read test log file
       const log = await fsp.readFile(path, "utf-8");
       // test
-      await fsp.rm(path, { recursive: true });
+      await fsp.unlink(path);
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
 
       // catch error

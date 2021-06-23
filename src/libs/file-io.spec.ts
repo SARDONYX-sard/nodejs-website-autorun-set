@@ -34,7 +34,7 @@ describe("file-io", () => {
 
       // finally
     } finally {
-      await fsp.rm(path, { recursive: true });
+      await fsp.unlink(path);
     }
   });
 });
