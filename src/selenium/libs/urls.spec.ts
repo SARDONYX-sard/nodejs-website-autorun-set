@@ -25,9 +25,9 @@ describe("getDateFromGoogle", () => {
         await fsp.writeFile(
           path,
           `
-          Title: today date - Google 検索
-          Element1: 2021年6月22日 火曜日, 2021年6月22日
-          Element2: 
+          Title: today date and weather
+          Element1:
+          Element2:
           `,
         );
       }
@@ -35,15 +35,12 @@ describe("getDateFromGoogle", () => {
       // read test log file
       const log = await fsp.readFile(path, "utf-8");
       // test
+      await fsp.rmdir(path, { recursive: true });
       return expect(log).toMatch(/Title:[\s\S]*Element1:[\s\S]*Element2:/g);
 
       // catch error
     } catch (e) {
       return expect(e).toMatch("error");
-
-      // finally
-    } finally {
-      await fsp.rmdir(path, { recursive: true });
     }
   });
 });
