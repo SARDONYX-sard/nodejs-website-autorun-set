@@ -78,7 +78,7 @@ export async function getDateFromGoogle(
 ): Promise<string | undefined> {
   // setting
   const driver = await build({
-    // args: ["--headless", "--disable-gpu"],
+    args: ["--headless", "--disable-gpu"],
     w3c: false,
   });
   // date (ex.2021-6-23)
