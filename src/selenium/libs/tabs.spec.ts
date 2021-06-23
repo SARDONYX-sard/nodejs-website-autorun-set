@@ -15,34 +15,42 @@ describe("tabs", () => {
   afterAll(async () => await driver.quit());
 
   it("should be able to create and switch tabs", async () => {
-    const url = "https://www.google.com/";
-    // Entry point
-    await driver.get(url);
+    try {
+      const url = "https://www.google.com/";
+      // Entry point
+      await driver.get(url);
 
-    // Create a new Tab
-    await createNewTab(url, driver);
+      // Create a new Tab
+      await createNewTab(url, driver);
 
-    // Switch to a new tab
-    await switchNewTab(0, driver);
+      // Switch to a new tab
+      await switchNewTab(0, driver);
 
-    // get title element
-    const title = await driver.getTitle();
+      // get title element
+      const title = await driver.getTitle();
 
-    expect(title).toBe("Google");
+      expect(title).toBe("Google");
+    } catch (e) {
+      return expect(e).toMatch("error");
+    }
   }, 30000);
 });
 
 describe("tabs", () => {
   it("should automatically cycle through the URLs", async () => {
-    const loopUrl = loopTab(undefined, 3000, {
-      args: ["--headless", "--disable-gpu", "--disable-extensions"],
-      w3c: false,
-    });
+    try {
+      const loopUrl = loopTab(undefined, 3000, {
+        args: ["--headless", "--disable-gpu", "--disable-extensions"],
+        w3c: false,
+      });
 
-    const titles = await loopUrl();
-    // Verification
-    titles.forEach((title) => {
-      expect(title).toBe("Google");
-    });
+      const titles = await loopUrl();
+      // Verification
+      titles.forEach((title) => {
+        expect(title).toBe("Google");
+      });
+    } catch (e) {
+      return expect(e).toMatch("error");
+    }
   }, 30000);
 });
