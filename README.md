@@ -34,7 +34,7 @@ The Selenium program allows you to open pre-specified URLs in sequence.
 ### Requirements
 
 * npm or Yarn
-* Node.js 10.0.0 or higher
+* Node.js 10.17 or higher
 * Chrome 91
 
 
