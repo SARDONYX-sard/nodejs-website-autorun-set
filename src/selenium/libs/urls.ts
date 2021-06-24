@@ -5,6 +5,7 @@ import { By, WebDriver } from "selenium-webdriver";
 import { execCommand, writeFiles } from "../../libs";
 // selenium libs
 import { build } from ".";
+import type { ScrapingContent } from "../types/urls";
 
 export const default_urls = [
   "https://www.google.com/",
@@ -63,26 +64,23 @@ export async function getUrlContent<T, U>(
  * sample function.(Get the weather for Arizona, USA)
  *
  * Write log file of date information taken from google.
- * @param url default: https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr
+ * @param url @default "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr"
  *
- * Location example:
+ * Location example: America: URL + "&gl=us&hl=en&pws=0&gws_rd=cr"
  *
- * - America: URL + "&gl=us&hl=en&pws=0&gws_rd=cr"
- * @param sleepMs sleep time minute  - default: 5000 ms
- * @param isTest Add the word `-test` to filename? - default: false
+ * @param sleepMs sleep time minute ms - @default 5000
+ * @param writeLogPath write log filename - @default `src/selenium/logs/${today}.txt`
  */
-export async function getArizonaWeatherFromGoogle(
+export async function getArizonaWeatherFromGoogle({
   url = "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr",
   sleepMs = 5000,
-  isTest = false,
-): Promise<string | undefined> {
+  writeLogPath = `src/selenium/logs/${moment().format("YYYY-MM-DD")}.txt`,
+}: ScrapingContent = {}): Promise<string | undefined> {
   // setting
   const driver = await build({
     args: ["--headless", "--disable-gpu"],
     w3c: false,
   });
-  // date (ex.2021-6-23)
-  const today = moment().format("YYYY-MM-DD");
 
   try {
     // Go to Google URL
@@ -98,7 +96,7 @@ export async function getArizonaWeatherFromGoogle(
       async (driver: WebDriver) => {
         // Get a day of the week (ex. Monday)
         const dow = await driver.findElement(By.id("wob_dts")).getText();
-
+        const today = moment().format("YYYY-MM-DD"); // date (ex.2021-6-23)
         return `Today: ${today} ${dow}`;
       },
 
@@ -128,7 +126,7 @@ export async function getArizonaWeatherFromGoogle(
 
     // write log
     if (log) {
-      await writeFiles(`src/selenium/logs/${today}.txt`, log, isTest);
+      await writeFiles(writeLogPath, log);
       return log;
     }
 

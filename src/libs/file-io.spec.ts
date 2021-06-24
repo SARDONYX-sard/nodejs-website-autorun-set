@@ -11,7 +11,8 @@ describe("file-io", () => {
   it("should remove the color code", async () => {
     // create path
     const today = moment().format("YYYY-MM-DD");
-    const path = `src/selenium/logs/${today}-file-io.txt`;
+    const path = `src/selenium/test/${today}-file-io.txt`;
+    const dir = path.replace(/(?:[^/]+?)?(?:-test)?$/, "");
 
     try {
       // write log
@@ -35,6 +36,7 @@ describe("file-io", () => {
       // finally
     } finally {
       await fsp.unlink(path);
+      await fsp.rmdir(dir);
     }
   });
 });

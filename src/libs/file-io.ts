@@ -5,26 +5,15 @@ import chalk from "chalk";
  * Array writable write function.
  * @param path - The file path to export to.
  * @param contents - What to write
- * @param isTest - Add the word `-test` to filename? - default: false
  */
-export async function writeFiles(
-  path: string,
-  contents: string | string[],
-  isTest = false,
-): Promise<void> {
+export async function writeFiles(path: string, contents: string | string[]): Promise<void> {
   try {
-    let filePath = path;
-    // Add the word `-test` to filename
-    if (isTest) {
-      filePath = filePath.replace(/([^/]+?)?(\..*)$/, "$1-test$2");
-    }
-
     // Make dir if not exist dir
-    const dir_path = path.replace(/(?:[^/]+?)?(?:-test)?$/, "");
+    const dir_path = path.replace(/(?:[^/]+?)??$/, "");
     await fsp.mkdir(dir_path, { recursive: true });
 
     // write file
-    await fsp.writeFile(filePath, stripAnsi(`${contents}`));
+    await fsp.writeFile(path, stripAnsi(`${contents}`));
     console.log(chalk`{green Completed writing the log.}`);
     return;
     // error catch
