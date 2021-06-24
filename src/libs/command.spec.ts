@@ -1,38 +1,21 @@
 import { echoError, execCommand, execute } from "./command";
 
 describe("command", () => {
-  // afterAll(() => {});
-
-  context("when the string is given", () => {
-    it("should return false", async () => {
-      try {
-        expect(execCommand("echo Test", /[^(-{1})](-{2})?echo/)).toBeFalsy();
-
-        // error catch
-      } catch (error) {
-        return expect(error).toMatch("error");
-      }
-    });
-
-    it("should return true", async () => {
-      try {
-        expect(execute("echo Test")).toBeTruthy();
-
-        // error catch
-      } catch (error) {
-        return expect(error).toMatch("error");
-      }
+  context("echoError", () => {
+    it("should export `echoError` function", () => {
+      expect(echoError).not.toBeUndefined();
     });
   });
 
-  context("when the error is thrown", () => {
-    it("should be executed `echoError`", async () => {
-      try {
-        Promise.reject(new Error("Test Error"));
-        // error catch
-      } catch (error) {
-        expect(echoError(error, true)).rejects.toThrowError("Test Error");
-      }
+  context("execCommand", () => {
+    it("should export `execCommand` function", () => {
+      expect(execCommand).not.toBeUndefined();
+    });
+  });
+
+  context("execute", () => {
+    it("should export `execute` function", () => {
+      expect(execute).not.toBeUndefined();
     });
   });
 });

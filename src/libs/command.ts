@@ -3,13 +3,9 @@ import { exec } from "child_process";
 /**
  * Function to output an error and terminate the process.
  * @param error
- * @param isThrow if you want to throw error.
  */
-export function echoError(error: Error, isThrow = false): void {
+export function echoError(error: Error): void {
   console.log(error.message);
-  if (isThrow) {
-    throw error;
-  }
   process.exit(1);
 }
 
@@ -27,19 +23,12 @@ export function echoError(error: Error, isThrow = false): void {
  * //or
  * npx ts-node src/selenium/sample/sample.ts pause
  */
-export function execCommand(command: string, arg: string | RegExp = command): boolean {
+export function execCommand(command: string, arg: string | RegExp = command): void {
   // if arg is string
-  if (typeof arg === "string" && arg === process.argv[2]) {
-    execute(command);
-    return true;
-  }
+  if (typeof arg === "string" && arg === process.argv[2]) return execute(command);
 
   // if arg is RegExp
-  if (arg == RegExp(arg) && arg.test(process.argv[2])) {
-    execute(command);
-    return true;
-  }
-  return false;
+  if (arg == RegExp(arg) && arg.test(process.argv[2])) return execute(command);
 }
 
 /**
@@ -47,7 +36,6 @@ export function execCommand(command: string, arg: string | RegExp = command): bo
  * @param command execute command
  * @returns Whether it could be executed.
  */
-export function execute(command: string): boolean {
-  exec(command, (error) => (error ? console.error(`[ERROR] ${error}`) : false));
-  return true;
+export function execute(command: string): void {
+  exec(command, (error) => console.error(`[ERROR] ${error}`));
 }
