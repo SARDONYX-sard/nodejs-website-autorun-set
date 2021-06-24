@@ -1,6 +1,6 @@
-type AsyncFunc<T> = () => Promise<T>;
+export type AsyncFunc<T> = () => Promise<T>;
 
-type Options = {
+export type Options = {
   args: string[];
   w3c: boolean;
 };

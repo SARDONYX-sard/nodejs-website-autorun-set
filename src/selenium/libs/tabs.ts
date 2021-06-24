@@ -1,5 +1,6 @@
 import { WebDriver } from "selenium-webdriver";
 import { build, default_urls } from ".";
+import type { AsyncFunc, Options } from "../types/tabs";
 
 /**
  *  Create a new Tab
