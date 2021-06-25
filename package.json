@@ -25,6 +25,7 @@
     "selenium-sample": "npx ts-node src/selenium/main.ts",
     "puppeteer": "npx ts-node src/puppeteer/main.ts",
     "lint": "eslint ./src/**/*.ts",
+    "lint:fix": "eslint ./src/**/*.ts --fix",
     "build": "tsc",
     "test": "jest --coverage",
     "coverage": "codecov",
