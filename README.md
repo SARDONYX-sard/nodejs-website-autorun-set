@@ -43,19 +43,19 @@ The Selenium program allows you to open pre-specified URLs in sequence.
 1. Clone this repository.
 
 ```sh
-$ git clone https://github.com/SARDONYX-sard/nodejs-website-autorun-set.git
+git clone https://github.com/SARDONYX-sard/nodejs-website-autorun-set.git
 ```
 
 2. Run command the following command.
 
 ```sh
-$ npm install
+npm install
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
-$ yarn install
+yarn install
 ```
 
 ## Usage
@@ -63,25 +63,25 @@ $ yarn install
 ### Selenium
 
 ```sh
-$ npx selenium-sample
+npx selenium-sample
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
-$ yarn run selenium-sample
+yarn run selenium-sample
 ```
 
 ### Puppeteer
 
 ```sh
-$ npx puppeteer
+npx puppeteer
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
-$ yarn run puppeteer
+yarn run puppeteer
 ```
 
 ### Test
@@ -89,15 +89,15 @@ $ yarn run puppeteer
 Run command the following command.
 
 ```sh
-$ npx test
+npx test
 # or
-$ npx jest --coverage
+npx jest --coverage
 ```
 
 If you are using Yarn, use the following command.
 
 ```sh
-$ yarn run test
+yarn run test
 ```
 
 ## Reference sites

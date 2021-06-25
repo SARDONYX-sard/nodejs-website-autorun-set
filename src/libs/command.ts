@@ -34,7 +34,6 @@ export function execCommand(command: string, arg: string | RegExp = command): vo
 /**
  * Function to execute shell commands.
  * @param command execute command
- * @returns Whether it could be executed.
  */
 export function execute(command: string): void {
   exec(command, (error) => console.error(`[ERROR] ${error}`));

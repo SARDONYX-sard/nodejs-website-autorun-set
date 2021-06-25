@@ -30,7 +30,7 @@ const articleUrlList = [
     promiseList.push(
       (async (index) => {
         const page = await browser.newPage();
-        page.setDefaultNavigationTimeout(30000); // default 3000 milliseconds, pass 0 to disable timeout
+        page.setDefaultNavigationTimeout(30000); // default 30000 milliseconds, pass 0 to disable timeout
         const response = await page.goto(targetUrl);
         await page.waitForTimeout(1000); // 1秒待つ
 
