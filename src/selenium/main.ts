@@ -1,5 +1,5 @@
-import { getArizonaWeatherFromGoogle } from "./libs";
-import { echoError } from "./../libs/command";
+import { getArizonaWeatherFromGoogle } from "./utils";
+import { echoError } from "../helper/command";
 
 // sample
 getArizonaWeatherFromGoogle().catch(echoError);

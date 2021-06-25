@@ -1,9 +1,9 @@
 import chalk from "chalk";
 import moment from "moment";
 import { By, WebDriver } from "selenium-webdriver";
-// common libs
-import { execCommand, writeFiles } from "../../libs";
-// selenium libs
+// helper
+import { execCommand, writeFiles } from "../../helper";
+// selenium > utils
 import { build } from ".";
 import type { ScrapingContent } from "../types/urls";
 
