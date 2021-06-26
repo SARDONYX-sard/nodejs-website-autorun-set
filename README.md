@@ -63,7 +63,7 @@ yarn install
 ### Selenium
 
 ```sh
-npx selenium-sample
+npm run selenium-sample
 ```
 
 If you are using Yarn, use the following command.
@@ -75,7 +75,7 @@ yarn run selenium-sample
 ### Puppeteer
 
 ```sh
-npx puppeteer
+npm run puppeteer
 ```
 
 If you are using Yarn, use the following command.
@@ -89,9 +89,9 @@ yarn run puppeteer
 Run command the following command.
 
 ```sh
-npx test
+npm run test
 # or
-npx jest --coverage
+npm run jest --coverage
 ```
 
 If you are using Yarn, use the following command.
