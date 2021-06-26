@@ -10,29 +10,17 @@ setDefaultService(service);
 
 /**
  * @param options
- * - example:
+ * @example
  *
  *{
- *
- *    args: [
- *
- *      // Use headless mode
- *      "--headless",
- *
- *      // Flag temporarily required in headless mode (will be unnecessary soon)
- *      "--disable-gpu",
- *
- *      // Disable all extensions. Also disable user scripts.
- *      "--disable-extensions",
- *
- *      "--no-sandbox",
- *
- *      `--window-size=1980,1200`,
- *
- *    ],
- *
- *    w3c: false
- *
+ *  args: [
+ *    "--headless", // Use headless mode
+ *    "--disable-gpu", // Flag temporarily required in headless mode (will be unnecessary soon)
+ *    "--disable-extensions", // Disable all extensions. Also disable user scripts.
+ *    "--no-sandbox",
+ *    `--window-size=1980,1200`,
+ *  ],
+ *  w3c: false
  *}
  */
 export function build(options = {}): ThenableWebDriver {
