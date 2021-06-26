@@ -54,7 +54,7 @@
     "jest": "27.0.5",
     "jest-plugin-context": "2.9.0",
     "lint-staged": "11.0.0",
-    "prettier": "2.3.1",
+    "prettier": "2.3.2",
     "ts-jest": "27.0.3",
     "ts-node": "10.0.0",
     "tsconfig-paths": "3.9.0",
