@@ -1,7 +1,7 @@
 <h1 align="center">Auto open urls</h1>
 
 <div align="center">
-<a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/github/license/jagaapple/next-typed-routes.svg" alt="license"></a>
+<a href="https://opensource.org/licenses/MIT"><img alt="GitHub" src="https://img.shields.io/github/license/SARDONYX-sard/nodejs-website-autorun-set"></a>
 </div>
 
 ## Table of Contents
