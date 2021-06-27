@@ -4,10 +4,6 @@ import { promises as fsp } from "fs";
 import { writeFiles } from "./file-io";
 
 describe("file-io", () => {
-  // beforeAll(() => {});
-
-  // afterAll(() => {});
-
   it("should remove the color code", async () => {
     // create path
     const today = moment().format("YYYY-MM-DD");

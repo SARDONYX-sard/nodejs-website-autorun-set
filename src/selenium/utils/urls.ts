@@ -67,7 +67,7 @@ export async function getUrlContent<T, U>(
  *
  * Location example: America: URL + "&gl=us&hl=en&pws=0&gws_rd=cr"
  *
- * @param sleepMs sleep time minute ms - @default 5000
+ * @param sleepMs sleep time ms - @default 5000
  * @param writeLogPath write log filename - @default `src/selenium/logs/${today}.txt`
  */
 export async function getArizonaWeatherFromGoogle({
