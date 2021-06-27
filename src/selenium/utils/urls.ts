@@ -43,13 +43,12 @@ export async function getUrlContent<T, U>(
       // Get published
       const element2 = await getElement2(driver);
 
-      const log = chalk`
+      // return result log
+      return chalk`
         Title: {yellow ${title}}
         Element1: {cyan ${element1}}
         Element2: {green ${element2}}
         `;
-
-      return log;
 
       // Catch error
     } catch (e) {
@@ -93,7 +92,7 @@ export async function getArizonaWeatherFromGoogle({
       url,
 
       // Get date from HTML Element
-      async (driver: WebDriver) => {
+      async () => {
         // Get a day of the week (ex. Monday)
         const dow = await driver.findElement(By.id("wob_dts")).getText();
         const today = moment().format("YYYY-MM-DD"); // date (ex.2021-6-23)
@@ -101,7 +100,7 @@ export async function getArizonaWeatherFromGoogle({
       },
 
       // Get date from HTML Element
-      async (driver: WebDriver) => {
+      async () => {
         // Temperature: °C(ex. 27)
         const celsius = await driver.findElement(By.id("wob_tm")).getText();
         // Probability of precipitation: (ex. 60%)

@@ -36,35 +36,22 @@ export async function switchNewTab(count: number, driver: WebDriver): Promise<vo
 
 /**
  * Closure function that traverses the URL and returns an array of site titles.
- * @param url_lists default: https://www.google.com/ * 5
- * @param waitMs sleep time. default: 5000ms
- * @param buildOpts default: {}
- * @returns `an array of site titles`
- *
+ * @param url_lists @default ["https://www.google.com/"] * 5
+ * @param waitMs sleep time ms. @default 5000
+ * @param buildOpts @default {}
  * @example
  *
- *{
- *
+ *   {
  *    args: [
- *
- *      // Use headless mode
- *      "--headless",
- *
- *      // Flag temporarily required in headless mode (will be unnecessary soon)
- *      "--disable-gpu",
- *
- *      // Disable all extensions. Also disable user scripts.
- *      "--disable-extensions",
- *
+ *      "--headless", // Use headless mode
+ *      "--disable-gpu", // Flag temporarily required in headless mode (will be unnecessary soon)
+ *      "--disable-extensions", // Disable all extensions. Also disable user scripts.
  *      "--no-sandbox",
- *
  *      `--window-size=1980,1200`,
- *
  *    ],
- *
  *    w3c: false
- *
- *}
+ *   }
+ * @returns `An array of site's title`
  */
 export function loopTab(
   url_lists = default_urls,
