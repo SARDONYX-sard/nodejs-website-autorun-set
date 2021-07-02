@@ -5,7 +5,7 @@ import { writeFiles } from "./file-io";
 
 describe("file-io", () => {
   it("should remove the color code", async () => {
-    // create path
+    // Create path
     const today = moment().format("YYYY-MM-DD");
     const path = `src/selenium/test/${today}-file-io.txt`;
     const dir = path.replace(/(?:[^/]+?)?(?:-test)?$/, "");
@@ -21,7 +21,7 @@ describe("file-io", () => {
         `,
       );
 
-      // read
+      // Read
       const result = (await fsp.readFile(path, "utf-8")).replace(/\s*/g, "");
       return expect(result).toBe("HelloWorld");
 
@@ -31,6 +31,7 @@ describe("file-io", () => {
 
       // finally
     } finally {
+      // Remove the file and directory
       await fsp.unlink(path);
       await fsp.rmdir(dir);
     }
