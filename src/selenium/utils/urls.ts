@@ -1,11 +1,11 @@
 import chalk from "chalk";
 import moment from "moment";
-import { By, WebDriver } from "selenium-webdriver";
+import { By } from "selenium-webdriver";
 // helper
 import { execCommand, writeFiles } from "../../helper";
 // selenium > utils
 import { build } from ".";
-import type { ScrapingContent } from "../types/urls";
+import type { ScrapingContent, ScrapingFunc } from "../types/urls";
 
 export const default_urls = [
   "https://www.google.com/",
@@ -25,13 +25,13 @@ export const default_urls = [
  * @param getPublished_elem - Arbitrary DOM operations
  * @param driver - example: const driver = await build()
  */
-export async function getUrlContent<T, U>(
-  domain: string,
-  url: string,
-  getElement1: (driver: WebDriver) => Promise<T>,
-  getElement2: (driver: WebDriver) => Promise<U>,
-  driver: WebDriver,
-): Promise<string | undefined> {
+export const getUrlContent: ScrapingFunc<string, string> = async ({
+  url = "https://www.google.com/",
+  domain = "google.com",
+  getElement1,
+  getElement2,
+  driver,
+}) => {
   if (RegExp(`^https?://.*${domain}.*`).test(url)) {
     try {
       // Get URL title
@@ -57,7 +57,7 @@ export async function getUrlContent<T, U>(
       console.log(e.message);
     }
   }
-}
+};
 
 /**
  * sample function.(Get the weather for Arizona, USA)
@@ -74,9 +74,9 @@ export async function getArizonaWeatherFromGoogle({
   url = "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr",
   sleepMs = 5000,
   writeLogPath = `src/selenium/logs/${moment().format("YYYY-MM-DD")}.txt`,
-}: ScrapingContent = {}): Promise<string | undefined> {
+}: Partial<ScrapingContent> = {}): Promise<string | undefined> {
   // setting
-  const driver = await build({
+  const driver = build({
     args: ["--headless", "--disable-gpu"],
     w3c: false,
   });
@@ -86,13 +86,13 @@ export async function getArizonaWeatherFromGoogle({
     await driver.get(url);
     await driver.sleep(sleepMs);
 
-    const log = await getUrlContent(
+    const log = await getUrlContent({
       // domain:RegExp
-      "google.com/search",
+      domain: "google.com/search",
       url,
 
       // Get date from HTML Element
-      async () => {
+      getElement1: async () => {
         // Get a day of the week (ex. Monday)
         const dow = await driver.findElement(By.id("wob_dts")).getText();
         const today = moment().format("YYYY-MM-DD"); // date (ex.2021-6-23)
@@ -100,7 +100,7 @@ export async function getArizonaWeatherFromGoogle({
       },
 
       // Get date from HTML Element
-      async () => {
+      getElement2: async () => {
         // Temperature: °C(ex. 27)
         const celsius = await driver.findElement(By.id("wob_tm")).getText();
         // Probability of precipitation: (ex. 60%)
@@ -116,7 +116,7 @@ export async function getArizonaWeatherFromGoogle({
       },
 
       driver,
-    );
+    });
 
     console.log(
       chalk`{green ---------------- Result -------------------}
