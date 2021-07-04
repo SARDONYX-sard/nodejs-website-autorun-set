@@ -60,7 +60,7 @@ export const getUrlContent: ScrapingFunc<string, string> = async ({
 };
 
 /**
- * sample function.(Get the weather for Arizona, USA)
+ * Sample Function.(Get the weather for Arizona, USA)
  *
  * Write log file of date information taken from google.
  * @param url @default "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr"

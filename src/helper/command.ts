@@ -12,7 +12,7 @@ export function echoError(error: Error): void {
 /**
  * Function to execute Windows commands.
  * @param command - Execute command
- * @param args - option: Command arg
+ * @param args - option: Command argument (defaultValue: command)
  *
  * @example:pause script
  * // 1. In sample.ts...
