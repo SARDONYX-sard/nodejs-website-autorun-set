@@ -1,5 +1,5 @@
 import moment from "moment";
-import { promises as fsp } from "fs";
+import { existsSync, promises as fsp } from "fs";
 
 import { writeFiles } from "./file-io";
 
@@ -7,13 +7,14 @@ describe("file-io", () => {
   it("should remove the color code", async () => {
     // Create path
     const today = moment().format("YYYY-MM-DD");
-    const path = `src/selenium/test/${today}-file-io.txt`;
-    const dir = path.replace(/(?:[^/]+?)?(?:-test)?$/, "");
+    const filePath = `src/selenium/test/${today}-file-io.txt`;
+    const dir = filePath.replace(/(?:[^/]+?)?(?:-test)?$/, "");
 
     try {
       // write log
       await writeFiles(
-        path,
+        filePath,
+
         // contents
         `
         \u001b[30mH \u001b[31me \u001b[32ml \u001b[33ml \u001b[0mo
@@ -22,18 +23,19 @@ describe("file-io", () => {
       );
 
       // Read
-      const result = (await fsp.readFile(path, "utf-8")).replace(/\s*/g, "");
+      const result = (await fsp.readFile(filePath, "utf-8")).replace(/\s*/g, "");
       return expect(result).toBe("HelloWorld");
 
       // error catch
     } catch (error) {
       return expect(error).toMatch("error");
 
-      // finally
+      // finally: Remove the file and directory
     } finally {
-      // Remove the file and directory
-      await fsp.unlink(path);
-      await fsp.rmdir(dir);
+      if (existsSync(dir)) {
+        await fsp.unlink(filePath);
+        await fsp.rmdir(dir);
+      }
     }
   });
 });

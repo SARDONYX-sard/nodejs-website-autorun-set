@@ -13,7 +13,7 @@ describe("tabs", () => {
       });
     });
 
-    afterAll(async () => await driver.quit());
+    afterAll(async () => driver.quit());
 
     it("should be able to create and switch tabs", async () => {
       try {
