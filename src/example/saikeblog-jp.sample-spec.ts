@@ -1,7 +1,8 @@
 import "chromedriver";
+
+import moment from "moment";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
-import moment from "moment";
 
 let driver: ThenableWebDriver;
 

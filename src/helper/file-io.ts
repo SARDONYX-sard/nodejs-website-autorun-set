@@ -1,5 +1,5 @@
-import { promises as fsp } from "fs";
 import chalk from "chalk";
+import { promises as fsp } from "fs";
 
 /**
  * Array writable write function.

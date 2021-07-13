@@ -1,5 +1,6 @@
 import { existsSync, promises as fsp } from "fs";
 import moment from "moment";
+
 // selenium libs
 import { getArizonaWeatherFromGoogle } from "./urls";
 

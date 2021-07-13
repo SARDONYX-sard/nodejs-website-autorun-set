@@ -1,10 +1,12 @@
 import chalk from "chalk";
 import moment from "moment";
 import { By } from "selenium-webdriver";
+
 // helper
 import { execCommand, writeFiles } from "../../helper";
 // selenium > utils
-import { build } from ".";
+import { build } from "./";
+
 import type { ScrapingContent, ScrapingFunc } from "../types/urls";
 
 export const default_urls = [

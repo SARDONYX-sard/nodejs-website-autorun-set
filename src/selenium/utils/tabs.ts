@@ -1,6 +1,8 @@
 import { WebDriver } from "selenium-webdriver";
+
 // selenium > utils
-import { build, default_urls } from ".";
+import { build, default_urls } from "./";
+
 import type { AsyncFunc, Options } from "../types/tabs";
 
 /**

@@ -1,8 +1,9 @@
 import "chromedriver";
-import { Builder, Capabilities, ThenableWebDriver } from "selenium-webdriver";
-import { ServiceBuilder, setDefaultService } from "selenium-webdriver/chrome";
 // helper
 import "../../helper/error-handle";
+
+import { Builder, Capabilities, ThenableWebDriver } from "selenium-webdriver";
+import { ServiceBuilder, setDefaultService } from "selenium-webdriver/chrome";
 
 // Create driver instance
 const service = new ServiceBuilder().build();
