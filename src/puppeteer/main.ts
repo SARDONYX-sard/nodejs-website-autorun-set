@@ -28,15 +28,13 @@ const articleUrlList = [
 
   articleUrlList.forEach((targetUrl) => {
     promiseList.push(
-      (async (index) => {
+      (async () => {
         const page = await browser.newPage();
         page.setDefaultNavigationTimeout(30000); // default 30000 milliseconds, pass 0 to disable timeout
         const response = await page.goto(targetUrl);
         await page.waitForTimeout(1000); // 1秒待つ
 
-        if (response.status() !== 200) {
-          return [];
-        }
+        if (response.status() !== 200) return [];
 
         console.log(index);
         const fileName = "src/puppeteer/img/" + index + ".png";
@@ -53,7 +51,7 @@ const articleUrlList = [
 
         await page.close();
         return result;
-      })(index),
+      })(),
     );
     index++;
   });
