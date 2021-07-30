@@ -7,7 +7,7 @@ jobs:
   node_v12:
     working_directory: "~/repo"
     docker:
-      - image: "cimg/node:12.22.3-browsers"
+      - image: "cimg/node:12.22.4-browsers"
     steps:
       - browser-tools/install-browser-tools
       - "checkout"
