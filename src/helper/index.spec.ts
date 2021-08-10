@@ -1,4 +1,4 @@
-import { execCommand, sleep, writeFiles } from "./index";
+import { execCommand, writeFiles } from "./index";
 
 describe("index", () => {
   it("should export `execCommand` function", () => {
@@ -7,9 +7,5 @@ describe("index", () => {
 
   it("should export `writeFiles` function", () => {
     expect(writeFiles).not.toBeUndefined();
-  });
-
-  it("should export `sleep` function", () => {
-    expect(sleep).not.toBeUndefined();
   });
 });
