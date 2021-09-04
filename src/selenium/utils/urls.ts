@@ -53,10 +53,14 @@ export const getUrlContent: ScrapingFunc<string, string> = async ({
         `;
 
       // Catch error
-    } catch (e) {
-      const error_log = chalk`{red Failed to get element.}`;
-      console.log(error_log);
-      console.log(e.message);
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        const error_log = chalk`{red Failed to get element.}`;
+        console.log(error_log);
+        console.log(e.message);
+      } else {
+        throw new Error("got the not Error instance!");
+      }
     }
   }
 };
