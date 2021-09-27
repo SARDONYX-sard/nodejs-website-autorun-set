@@ -33,15 +33,15 @@
   },
   "dependencies": {
     "chalk": "^4.1.2",
-    "chromedriver": "^93.0.0",
+    "chromedriver": "^93.0.1",
     "moment": "^2.29.1",
-    "puppeteer": "^10.2.0",
-    "selenium-webdriver": "^4.0.0-beta.4"
+    "puppeteer": "^10.4.0",
+    "selenium-webdriver": "^4.0.0-rc-1"
   },
   "devDependencies": {
     "@types/jest": "27.0.2",
     "@types/jest-plugin-context": "2.9.4",
-    "@types/node": "16.6.1",
+    "@types/node": "16.10.1",
     "@types/selenium-webdriver": "4.0.15",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
