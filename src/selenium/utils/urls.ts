@@ -1,5 +1,5 @@
 import chalk from "chalk";
-import moment from "moment";
+import dayjs from "dayjs";
 import { By } from "selenium-webdriver";
 
 // helper
@@ -79,7 +79,7 @@ export const getUrlContent: ScrapingFunc<string, string> = async ({
 export async function getArizonaWeatherFromGoogle({
   url = "https://www.google.com/search?q=arizona+weather&gl=us&hl=en&pws=0&gws_rd=cr",
   sleepMs = 5000,
-  writeLogPath = `src/selenium/logs/${moment().format("YYYY-MM-DD")}.txt`,
+  writeLogPath = `src/selenium/logs/${dayjs().format("YYYY-MM-DD")}.txt`,
 }: Partial<ScrapingContent> = {}): Promise<string | undefined> {
   // setting
   const driver = build({
@@ -101,7 +101,7 @@ export async function getArizonaWeatherFromGoogle({
       getElement1: async () => {
         // Get a day of the week (ex. Monday)
         const dow = await driver.findElement(By.id("wob_dts")).getText();
-        const today = moment().format("YYYY-MM-DD"); // date (ex.2021-6-23)
+        const today = dayjs().format("YYYY-MM-DD"); // date (ex.2021-6-23)
         return `Today: ${today} ${dow}`;
       },
 

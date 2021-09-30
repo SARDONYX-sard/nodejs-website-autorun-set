@@ -1,6 +1,6 @@
 import "chromedriver";
 
-import moment from "moment";
+import dayjs from "dayjs";
 import { Builder, By, ThenableWebDriver } from "selenium-webdriver";
 import chrome from "selenium-webdriver/chrome";
 
@@ -53,7 +53,7 @@ describe("saikeblogに対するseleniumTest", () => {
     const copyright = await driver.findElement(By.className("source-org")).getText();
 
     // 現在の年を取得する
-    const m = moment();
+    const m = dayjs();
     const this_year = m.format("YYYY");
     const last_year = m.add(-2, "year").format("YYYY");
 

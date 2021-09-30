@@ -9,7 +9,7 @@ import { promises as fsp } from "fs";
 export async function writeFiles(path: string, contents: string | string[]): Promise<void> {
   try {
     // Make dir if not exist dir
-    const dir_path = path.replace(/(?:[^/]+?)??$/, "");
+    const dir_path = path.replace(/(?:[^/]+?)?$/, "");
     await fsp.mkdir(dir_path, { recursive: true });
 
     // write file
@@ -28,8 +28,5 @@ export async function writeFiles(path: string, contents: string | string[]): Pro
  * @param text string
  */
 export function stripAnsi(text: string): string {
-  return text.replace(
-    /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]/g,
-    "",
-  );
+  return text.replace(/[\u001b\u009b][[()#;?]*(?:\d{1,4}(?:;\d{0,4})*)?[0-9A-ORZcf-nqry=><]/g, "");
 }

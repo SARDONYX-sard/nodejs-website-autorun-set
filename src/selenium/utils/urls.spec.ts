@@ -1,5 +1,5 @@
 import { existsSync, promises as fsp } from "fs";
-import moment from "moment";
+import dayjs from "dayjs";
 
 // selenium libs
 import { getArizonaWeatherFromGoogle } from "./urls";
@@ -7,7 +7,7 @@ import { getArizonaWeatherFromGoogle } from "./urls";
 describe("getArizonaWeatherFromGoogle", () => {
   it("should be able to get the date", async () => {
     // create log filePath
-    const today = moment().format("YYYY-MM-DD");
+    const today = dayjs().format("YYYY-MM-DD");
     const filePath = `src/selenium/test/${today}-test.txt`;
     const dir = filePath.replace(/(?:[^\\/]+?)?$/, "");
     try {

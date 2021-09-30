@@ -1,12 +1,12 @@
 import { existsSync, promises as fsp } from "fs";
-import moment from "moment";
+import dayjs from "dayjs";
 
 import { writeFiles } from "./file-io";
 
 describe("file-io", () => {
   it("should remove the color code", async () => {
     // Create path
-    const today = moment().format("YYYY-MM-DD");
+    const today = dayjs().format("YYYY-MM-DD");
     const filePath = `src/selenium/test/${today}-file-io.txt`;
     const dir = filePath.replace(/(?:[^/]+?)?(?:-test)?$/, "");
 
