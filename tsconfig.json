@@ -7,7 +7,7 @@
     "esModuleInterop": true,
     "declaration": true,
     "lib": ["ESNext", "dom"],
-    "module": "commonjs",
+    "module": "esnext",
     "moduleResolution": "node",
     "outDir": "./lib",
     "rootDir": "./src",
@@ -15,7 +15,7 @@
     "sourceMap": false,
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2015"
+    "target": "es2017"
   },
   "include": ["./src/**/*", "src/selenium/env.ts"],
   "exclude": ["node_modules", "./src/**/*.spec.ts"]
