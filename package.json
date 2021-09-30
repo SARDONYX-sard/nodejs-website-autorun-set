@@ -21,15 +21,15 @@
   },
   "main": "src/selenium/main.ts",
   "scripts": {
-    "selenium": "npx ts-node src/selenium/custom/main.ts",
-    "selenium-sample": "npx ts-node src/selenium/main.ts",
-    "puppeteer": "npx ts-node src/puppeteer/main.ts",
+    "selenium": "node --require esbuild-register src/selenium/custom/main.ts",
+    "selenium-sample": "node --require esbuild-register src/selenium/main.ts",
+    "puppeteer": "node --require esbuild-register src/puppeteer/main.ts",
     "lint": "eslint ./src/**/*.ts",
     "lint:fix": "eslint ./src/**/*.ts --fix",
     "build": "tsc",
     "test": "jest --coverage",
     "coverage": "codecov",
-    "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/logs ./src/puppeteer/img/* ./coverage ./lib"
+    "clean": "rm -rf ./src/selenium/custom/logs ./src/selenium/logs ./src/puppeteer/img ./coverage ./lib"
   },
   "dependencies": {
     "chalk": "^4.1.2",
@@ -46,6 +46,8 @@
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
     "codecov": "3.8.3",
+    "esbuild": "^0.13.3",
+    "esbuild-register": "^3.0.0",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "24.4.2",
@@ -56,7 +58,6 @@
     "lint-staged": "11.1.2",
     "prettier": "2.4.1",
     "ts-jest": "27.0.5",
-    "ts-node": "10.2.1",
     "tsconfig-paths": "3.11.0",
     "typescript": "4.4.3"
   },
