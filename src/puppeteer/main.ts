@@ -1,4 +1,6 @@
-import { launch } from "puppeteer";
+import { promises as fsp } from "fs";
+import { resolve } from "path";
+import puppeteer from "puppeteer";
 
 // Unhandled promise rejection
 process.on("unhandledRejection", (error) => {
@@ -14,7 +16,7 @@ const articleUrlList = [
 ];
 (async () => {
   // setting
-  const browser = await launch({
+  const browser = await puppeteer.launch({
     args: [
       "--no-sandbox",
       "--disable-setuid-sandbox",
@@ -23,46 +25,36 @@ const articleUrlList = [
     ],
   });
 
-  const promiseList: Promise<any>[] = [];
-  let index = 0;
+  const imgDir = resolve(__dirname, "img");
+  fsp.mkdir(imgDir, { recursive: true });
 
-  articleUrlList.forEach((targetUrl) => {
-    promiseList.push(
-      (async () => {
-        const page = await browser.newPage();
-        page.setDefaultNavigationTimeout(30000); // default 30000 milliseconds, pass 0 to disable timeout
-        const response = await page.goto(targetUrl);
-        await page.waitForTimeout(1000); // 1秒待つ
+  const promiseList = articleUrlList.map(async (targetUrl, index) => {
+    const page = await browser.newPage();
+    page.setDefaultNavigationTimeout(30000); // default 30000 milliseconds, pass 0 to disable timeout
+    const response = await page.goto(targetUrl);
+    await page.waitForTimeout(1000); // 1秒待つ
 
-        if (response.status() !== 200) return [];
+    if (response.status() !== 200) return [];
 
-        console.log(index);
-        const fileName = "src/puppeteer/img/" + index + ".png";
-        await page.screenshot({ path: fileName, fullPage: true });
-        let title: string;
+    console.log(index);
+    const fileName = resolve(imgDir, `${index}.png`);
+    await page.screenshot({ path: fileName, fullPage: true });
 
-        const result = await page.evaluate(() => {
-          const $meta = document.querySelector('meta[property="og:title"]');
-          if ($meta instanceof Element) {
-            title = $meta.getAttribute("content") ?? "";
-          }
-          return [title];
-        });
+    const results = await page.evaluate(() => {
+      const title =
+        document.querySelector('meta[property="og:title"]')?.getAttribute("content") ?? "";
+      return [title];
+    });
 
-        await page.close();
-        return result;
-      })(),
-    );
-    index++;
+    await page.close();
+    return results;
   });
 
   let articleTitleList: string[] = [];
   await Promise.all(promiseList)
-    .then((valueList) => {
-      valueList.forEach((value: string) => {
-        articleTitleList = articleTitleList.concat(value);
-      });
-    })
+    .then((valueList) =>
+      valueList.map((value: string[]) => (articleTitleList = articleTitleList.concat(value))),
+    )
     .catch((reject) => {
       throw reject;
     });
