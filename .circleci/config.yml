@@ -2,7 +2,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
 version: 2.1
 orbs:
-  browser-tools: circleci/browser-tools@1.2.2
+  browser-tools: circleci/browser-tools@1.2.3
 jobs:
   node_v12:
     working_directory: "~/repo"
