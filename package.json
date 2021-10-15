@@ -48,7 +48,7 @@
     "codecov": "3.8.3",
     "esbuild": "0.13.6",
     "esbuild-register": "3.0.0",
-    "eslint": "7.32.0",
+    "eslint": "8.0.1",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-jest": "24.7.0",
     "eslint-plugin-prettier": "4.0.0",
