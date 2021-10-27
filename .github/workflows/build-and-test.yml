@@ -59,7 +59,7 @@ jobs:
         run: "npm install -g pnpm"
       - name: "Install dependencies if needed"
         if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
-        run: "pnpm rb"
+        run: "pnpm i"
 
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"
@@ -93,7 +93,7 @@ jobs:
         run: "npm install -g pnpm"
       - name: "Install dependencies if needed"
         if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
-        run: "pnpm rb"
+        run: "pnpm i"
 
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"

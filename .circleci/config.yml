@@ -1,7 +1,7 @@
 # JavaScript CircleCI 2.0 configuration file.
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
 version: 2.1
-orbs:
+ois:
   browser-tools: circleci/browser-tools@1.2.3
 jobs:
   node_v12:
@@ -18,7 +18,7 @@ jobs:
           command: "npm install -g pnpm"
       - run:
           name: "Install packages"
-          command: "pnpm rb"
+          command: "pnpm i"
       - save_cache:
           key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
@@ -43,7 +43,7 @@ jobs:
           command: "npm install -g pnpm"
       - run:
           name: "Install packages"
-          command: "pnpm rb"
+          command: "pnpm i"
       - save_cache:
           key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
