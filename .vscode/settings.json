@@ -41,8 +41,9 @@
     "editor.formatOnSave": true
   },
   "cSpell.words": [
-    "KHTML",
-    "chks"
+    "chks",
+    "cimg",
+    "KHTML"
   ],
   "typescript.tsdk": "node_modules//typescript//lib"
 }
