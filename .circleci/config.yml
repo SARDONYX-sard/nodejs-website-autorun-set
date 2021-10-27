@@ -2,7 +2,7 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
 # image lists https://circleci.com/docs/2.0/docker-image-tags.json
 version: 2.1
-ois:
+orbs:
   browser-tools: circleci/browser-tools@1.2.3
 jobs:
   node_v12:
