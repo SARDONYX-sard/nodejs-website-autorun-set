@@ -22,7 +22,6 @@
 
 <!-- /TOC -->
 
-
 ## What is that ?
 
 This is the Program of Puppeteer & Selenium running on Node.js.
@@ -33,10 +32,9 @@ The Selenium program allows you to open pre-specified URLs in sequence.
 
 ### Requirements
 
-* npm or Yarn
-* Node.js 10.17 or higher
-* Chrome 91
-
+- npm or Yarn
+- Node.js 12.17 or higher
+- Chrome 91
 
 ## Installation
 

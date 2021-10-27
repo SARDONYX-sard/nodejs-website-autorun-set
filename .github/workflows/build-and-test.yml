@@ -19,7 +19,7 @@ jobs:
     needs: "parameters"
     strategy:
       matrix:
-        node: ["10.17", "12.13", "14.15"]
+        node: ["12.17", "14.13", "16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"
@@ -46,7 +46,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: ["10.17", "12.13", "14.15"]
+        node: ["12.17", "14.13", "16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"
@@ -73,7 +73,7 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        node: ["10.17", "12.13", "14.15"]
+        node: ["12.17", "14.13", "16.8"]
     steps:
       - uses: "actions/checkout@v2"
       - name: "Use Node.js"

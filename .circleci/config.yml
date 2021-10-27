@@ -29,15 +29,15 @@ jobs:
       - run:
           name: "Execute tests"
           command: "npm test && npm run coverage"
-  node_v10:
+  node_v14:
     working_directory: "~/repo"
     docker:
-      - image: "cimg/node:10.24.1-browsers"
+      - image: "cimg/node:14.10-browsers"
     steps:
       - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
-          key: 'node-10.24-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
           command: "npm install -g pnpm"
@@ -45,7 +45,7 @@ jobs:
           name: "Install packages"
           command: "pnpm rb"
       - save_cache:
-          key: 'node-10.24-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
             - "node_modules"
       - run:
@@ -59,4 +59,4 @@ workflows:
   build:
     jobs:
       - "node_v12"
-      - "node_v10"
+      - "node_v14"
