@@ -1,6 +1,6 @@
 # JavaScript CircleCI 2.0 configuration file.
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
-# image lists https://circleci.com/docs/2.0/docker-image-tags.json
+# image lists https://circleci.com/developer/images/image/cimg/node
 version: 2.1
 orbs:
   browser-tools: circleci/browser-tools@1.2.3
@@ -13,7 +13,7 @@ jobs:
       - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
-          key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node-12.22.7-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
           command: "sudo npm install -g pnpm"
@@ -21,7 +21,7 @@ jobs:
           name: "Install packages"
           command: "pnpm i"
       - save_cache:
-          key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node-12.22.7-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
             - "node_modules"
       - run:
@@ -29,16 +29,16 @@ jobs:
           command: "npm run lint"
       - run:
           name: "Execute tests"
-          command: "npm test && npm run coverage"
+          command: "npm test"
   node_v14:
     working_directory: "~/repo"
     docker:
-      - image: "cimg/node:14.10-browsers"
+      - image: "cimg/node:14.18.0-browsers"
     steps:
       - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
-          key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node:14.18.0-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
           command: "sudo npm install -g pnpm"
@@ -46,7 +46,7 @@ jobs:
           name: "Install packages"
           command: "pnpm i"
       - save_cache:
-          key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
+          key: 'node:14.18.0-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
             - "node_modules"
       - run:
