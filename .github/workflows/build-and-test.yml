@@ -32,9 +32,13 @@ jobs:
         with:
           path: "./node_modules"
           key: "node-modules-${{ needs.parameters.outputs.GITHUB_SHA }}-${{ matrix.node }}"
+
+      - name: "Install pnpm"
+        run: "npm install -g pnpm"
+
       - name: "Install dependencies if needed"
         if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
-        run: "npm ci"
+        run: "pnpm rb"
 
   test:
     name: "Test"

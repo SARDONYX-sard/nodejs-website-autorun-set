@@ -2,20 +2,23 @@
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
 version: 2.1
 orbs:
-  browser-tools: circleci/browser-tools@1.2.2
+  browser-tools: circleci/browser-tools@1.2.3
 jobs:
   node_v12:
     working_directory: "~/repo"
     docker:
-      - image: "cimg/node:12.22.6-browsers"
+      - image: "cimg/node:12.22.7-browsers"
     steps:
       - browser-tools/install-browser-tools
       - "checkout"
       - restore_cache:
           key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
+          name: "Install pnpm"
+          command: "npm install -g pnpm"
+      - run:
           name: "Install packages"
-          command: "npm ci"
+          command: "pnpm rb"
       - save_cache:
           key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
@@ -36,8 +39,11 @@ jobs:
       - restore_cache:
           key: 'node-10.24-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
+          name: "Install pnpm"
+          command: "npm install -g pnpm"
+      - run:
           name: "Install packages"
-          command: "npm ci"
+          command: "pnpm rb"
       - save_cache:
           key: 'node-10.24-browsers-node-modules-{{ checksum "package.json" }}'
           paths:
