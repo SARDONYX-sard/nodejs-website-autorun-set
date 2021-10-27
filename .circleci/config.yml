@@ -1,5 +1,6 @@
 # JavaScript CircleCI 2.0 configuration file.
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details.
+# image lists https://circleci.com/docs/2.0/docker-image-tags.json
 version: 2.1
 ois:
   browser-tools: circleci/browser-tools@1.2.3
@@ -15,7 +16,7 @@ jobs:
           key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
-          command: "npm install pnpm"
+          command: "sudo npm install -g pnpm"
       - run:
           name: "Install packages"
           command: "pnpm i"
@@ -40,7 +41,7 @@ jobs:
           key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
-          command: "npm install pnpm"
+          command: "sudo npm install -g pnpm"
       - run:
           name: "Install packages"
           command: "pnpm i"

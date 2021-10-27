@@ -1,4 +1,3 @@
-# image lists https://circleci.com/docs/2.0/docker-image-tags.json
 name: "Build and test"
 on:
   push:
