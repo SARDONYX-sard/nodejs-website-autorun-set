@@ -54,6 +54,13 @@ jobs:
         uses: "actions/setup-node@v1"
         with:
           node-version: "${{ matrix.node }}"
+
+      - name: "Install pnpm"
+        run: "npm install -g pnpm"
+      - name: "Install dependencies if needed"
+        if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
+        run: "pnpm rb"
+
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"
         uses: "actions/cache@v2"
@@ -81,6 +88,13 @@ jobs:
         uses: "actions/setup-node@v1"
         with:
           node-version: "${{ matrix.node }}"
+
+      - name: "Install pnpm"
+        run: "npm install -g pnpm"
+      - name: "Install dependencies if needed"
+        if: "steps.node-modules-dependencies.outputs.cache-hit != 'true'"
+        run: "pnpm rb"
+
       - name: "Restore cached dependencies"
         id: "node-modules-dependencies"
         uses: "actions/cache@v2"
