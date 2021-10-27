@@ -15,7 +15,7 @@ jobs:
           key: 'node-12.22-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
-          command: "npm install -g pnpm"
+          command: "npm install pnpm"
       - run:
           name: "Install packages"
           command: "pnpm i"
@@ -40,7 +40,7 @@ jobs:
           key: 'node:14.10-browsers-node-modules-{{ checksum "package.json" }}'
       - run:
           name: "Install pnpm"
-          command: "npm install -g pnpm"
+          command: "npm install pnpm"
       - run:
           name: "Install packages"
           command: "pnpm i"
